@@ -36,7 +36,25 @@ export class AuthService {
       })
   }
 
+  emailLogin(email: string, password: string) {
+    return new Promise((resolve, reject) => {
+      this.afAuth.auth.signInWithEmailAndPassword(email, password)
+        .then(userData => resolve(userData),
+          err => reject(err))
+    });
+  }
 
+  emailRegister(email: string, password: string) {
+    return new Promise((resolve, reject) => {
+      this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+        .then(userData => resolve(userData),
+          err => reject(err))
+    });
+  }
+
+  getAuth() {
+    return this.afAuth.authState.map(auth => auth);
+  }
 
   googleLogin() {
     const provider = new firebase.auth.GoogleAuthProvider()
