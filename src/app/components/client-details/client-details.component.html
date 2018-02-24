@@ -13,7 +13,7 @@
     </div>
   </div>
 </div>
-<hr>
+<hr> 
 <div *ngIf="client" class="card">
   <h3 class="card-header">{{ client.firstName }} {{ client.lastName }}</h3>
   <div class="card-body">
@@ -23,8 +23,11 @@
       </div>
       <div class="cold-md-8 col-sm-6">
         <h3 class="pull-right">
-          Balance
-          <span [class.text-danger]="hasBalance" [class.text-success]="!hasBalance">
+          Balance 
+          <span
+            [class.text-danger]="hasBalance"
+            [class.text-success]="!hasBalance"
+          >
             {{ client.balance | currency:"USD":"symbol" }}
           </span>
           <small>
