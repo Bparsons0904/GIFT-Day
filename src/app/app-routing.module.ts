@@ -19,6 +19,10 @@ import { NotFoundComponent } from
 import { AuthGuard } from './guards/auth.guard';
 import { RegisterGuard } from './guards/register.guard';
 
+// User Profile Addins
+import { UserProfileComponent } from
+  './components/user-profile/user-profile.component';
+
 const routes: Routes = [
   {path: '', component: DashboardComponent, canActivate:[AuthGuard]},
   {path: 'login', component: LoginComponent},
@@ -27,6 +31,8 @@ const routes: Routes = [
   { path: 'client/edit/:id', component: EditClientComponent, canActivate: [AuthGuard]},
   { path: 'client/:id', component: ClientDetailsComponent, canActivate: [AuthGuard]},
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard]},
+  // User Profile Addins
+  { path: 'profile', component: UserProfileComponent},
   {path: '**', component: NotFoundComponent},
 ]
 @NgModule({

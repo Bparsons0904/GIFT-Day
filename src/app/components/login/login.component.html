@@ -19,7 +19,23 @@
           </div>
           <input type="submit" value="Login" class="btn btn-primary btn-block">
         </form>
+        <button class="btn btn-link btn-block" routerLink="/register">Register</button>
       </div>
+    </div>
+    <div class="card mt-4">
+      <!-- <div class="card-header">
+        Social Login
+      </div>   -->
+        <div class="card-body text-center">
+          <button (click)="authService.googleLogin()" class="btn btn-block btn-primary">
+            <i class="fa fa-google"></i> Connect Google
+          </button>
+          <button (click)="authService.facebookLogin()" class="btn btn-block btn-primary">
+            <i class="fa fa-facebook"></i> Connect Facebook
+          </button>
+        </div>
+      
+      
     </div>
   </div>
 </div>

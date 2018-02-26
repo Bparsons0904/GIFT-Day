@@ -16,23 +16,25 @@ export class NavbarComponent implements OnInit {
   showRegister: boolean;
 
   constructor(
-    private authService: AuthService,
+    public authService: AuthService,
     private router: Router,
     private flashMessage: FlashMessagesService,
     private settingsService: SettingsService
   ) { }
 
   ngOnInit() {
-    this.authService.getAuth().subscribe(auth => {
-      if (auth) {
+    this.authService.getAuth().subscribe(auth => {      
+      if(auth) {        
         this.isLoggedIn = true;
-        this.loggedInUser = auth.email;
+        this.loggedInUser = auth.displayName;
       } else {
         this.isLoggedIn = false;
       }
     });
-    this.showRegister = this.settingsService.getSettings().allowRegistration;
-
+    this.showRegister = this.settingsService.getSettings().allowRegistration;  
+    this.authService.getAuth().subscribe(auth => {
+    });
+    
   }
 
 
@@ -42,8 +44,6 @@ export class NavbarComponent implements OnInit {
       cssClass: 'alert-success', timeout: 4000
     });
     this.router.navigate(['/login']);
-  }
-
-
+  } 
 
 }
