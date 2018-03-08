@@ -22,18 +22,18 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit() {
-    this.authService.register(this.email, this.password).then(res => {
-      this.flashMessage.show('You are now registered and logged in.', {
-        cssCLass: 'alert-success', timeout:4000
-      });
-      this.router.navigate(['/']);
-    })
-    .catch(err => {
-      this.flashMessage.show(err.message, {
-        cssClass: 'alert-danger', timeout: 4000
-      });
-    });
-  }
+  // onSubmit() {
+  //   this.authService.register(this.email, this.password).then(res => {
+  //     this.flashMessage.show('You are now registered and logged in.', {
+  //       cssCLass: 'alert-success', timeout:4000
+  //     });
+  //     this.router.navigate(['/']);
+  //   })
+  //   .catch(err => {
+  //     this.flashMessage.show(err.message, {
+  //       cssClass: 'alert-danger', timeout: 4000
+  //     });
+  //   });
+  // }
 
 }

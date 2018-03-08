@@ -4,7 +4,7 @@ import { environment } from'../environments/environment';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { SettingsService } from './services/settings.service';
 
@@ -26,6 +26,9 @@ import { AuthService } from './services/auth.service';
 
 // User Profile Addins
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { NotifyService } from './services/notify.service';
+import { UserFormComponent } from './components/user-form/user-form.component';
+
 
 @NgModule({
   declarations: [
@@ -42,7 +45,8 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     SettingsComponent,
     NotFoundComponent,
     // User Profile Addins
-    UserProfileComponent
+    UserProfileComponent,
+    UserFormComponent
 
   ],
   imports: [
@@ -52,9 +56,10 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [ClientService, AuthService, SettingsService],
+  providers: [ClientService, AuthService, SettingsService, NotifyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,23 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
-import { FlashMessagesService } from 'angular2-flash-messages';
-import { Router } from '@angular/router';
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
+
+import { AuthService } from '../../services/auth.service';
 
 type UserFields = 'email' | 'password';
 type FormErrors = {[u in UserFields]: string };
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'user-form',
+  templateUrl: './user-form.component.html',
+  styleUrls: ['./user-form.component.css'],
 })
-export class LoginComponent implements OnInit {
+export class UserFormComponent implements OnInit {
 
-  email: string;
-  password: string;
   userForm: FormGroup;
-  newUser = false; // to toggle login or signup form
+  newUser = true; // to toggle login or signup form
   passReset = false; // set to true when password reset is triggered
   formErrors: FormErrors = {
     'email': '',
@@ -31,35 +28,16 @@ export class LoginComponent implements OnInit {
     'password': {
       'required': 'Password is required.',
       'pattern': 'Password must be include at one letter and one number.',
-      'minlength': 'Password must be at least 6 characters long.',
-      'maxlength': 'Password cannot be more than 25 characters long.',
+      'minlength': 'Password must be at least 4 characters long.',
+      'maxlength': 'Password cannot be more than 40 characters long.',
     },
   };
-  constructor(
-    private fb: FormBuilder, 
-    private auth: AuthService,
-    private router: Router
-  ) { }
+
+  constructor(private fb: FormBuilder, private auth: AuthService) { }
 
   ngOnInit() {
     this.buildForm();
   }
-
-  signInWithGoogle() {
-    this.auth.googleLogin()
-      .then(() => this.afterSignIn());
-  }
-
-  signInWithFacebook() {
-    this.auth.facebookLogin()
-      .then(() => this.afterSignIn());
-  }
-
-  
-  // signInWithTwitter() {
-  //   this.auth.twitterLogin()
-  //     .then(() => this.afterSignIn());
-  // }
 
   toggleForm() {
     this.newUser = !this.newUser;
@@ -70,8 +48,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.auth.emailLogin(this.userForm.value['email'], this.userForm.value['password'])
-    .then(() => this.afterSignIn());
+    this.auth.emailLogin(this.userForm.value['email'], this.userForm.value['password']);
   }
 
   resetPassword() {
@@ -118,11 +95,4 @@ export class LoginComponent implements OnInit {
       }
     }
   }
-
-  /// Shared
-  private afterSignIn() {
-    // Do after login stuff here, such router redirects, toast messages, etc.
-    this.router.navigate(['/profile']);
-  }
-
 }
