@@ -14,9 +14,63 @@
 <!-- User logged in -->
 <ng-template #authenticated>
   <div *ngIf="auth.user | async as user">
-    <h3>Howdy, {{ user.displayName }}</h3>
+    <div class="card">
+      <div class="card-header">
+        {{user.displayName | titlecase }}'s Profile
+      </div>
+      <div class="card-body">
+        <form #profileForm="ngForm" (ngSubmit)="onSubmit(profileForm)">
+          <div class="form-group">
+            <label for="displayName">Full Name</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              name="displayName" 
+              #userDisplayName="ngModel"
+              [(ngModel)]="user.displayName"
+              required
+              >
+          </div>
+          <div class="form-group">
+            <label for="school">School</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              name="school" 
+              #userSchool="ngModel"
+              [(ngModel)]="user.school"
+              required
+              >
+          </div>
+          <div class="form-group">
+            <label for="grade">Grade</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              name="grade" 
+              #userGrade="ngModel"
+              [(ngModel)]="user.grade"
+              required
+              >
+          </div>
+          <input type="text"
+            type="text"
+            class="form-control"
+            name="uid"
+            #userUID="ngModel"
+            [(ngModel)]="user.uid"
+            [hidden]=true
+            required 
+          >
+          <input type="submit" value="Submit" class="btn btn-primary btn-block">
+        </form>
+      </div>
+    </div>
+
+    <button (click)="idcheck()" >Test Button</button>
+    <!-- <h3>Hello, {{ user.displayName }}</h3>
     <img class="card-img-top" [src]="user.photoURL || 'https://api.adorable.io/avatars/109/fire.png'" width=50px>
     <p class="text-truncate">UID: {{ user.uid }}</p>
-    <button class="button" (click)="logout()">Logout</button>
+    <button class="button" (click)="logout()">Logout</button> -->
   </div>
 </ng-template>

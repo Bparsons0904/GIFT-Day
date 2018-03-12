@@ -14,18 +14,22 @@ import { switchMap } from 'rxjs/operators';
 
 import { FlashMessagesService } from 'angular2-flash-messages';
 
+import { Users } from '../models/users';
+
 // User Profile Addin
-interface User {
-  uid: string;
-  email: string;
-  photoURL?: string;
-  displayName?: string;
-}
+// interface User {
+//   uid: string;
+//   email: string;
+//   grade?: string;
+//   displayName?: string;
+//   school?: string;
+//   photoURL?: string;
+// }
 
 @Injectable()
 export class AuthService {
   // User Profile Addin
-  user: Observable<User>;
+  user: Observable<Users>;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -38,7 +42,7 @@ export class AuthService {
     this.user = this.afAuth.authState
       .switchMap(user => {
         if (user) {
-          return this.afs.doc<User>(`users/${user.uid}`).valueChanges()
+          return this.afs.doc<Users>(`users/${user.uid}`).valueChanges()
         } else {
           return Observable.of(null)
         }
@@ -59,6 +63,12 @@ export class AuthService {
 
   getAuth() {
     return this.afAuth.authState.map(auth => auth);
+  }
+
+  getAuthID() {
+    console.log(this.afAuth.auth);
+    
+    return this.afAuth.auth;
   }
 
   logout() {
@@ -141,15 +151,17 @@ export class AuthService {
   }
 
   // Sets user data to firestore after succesful login
-  private updateUserData(user: User) {
+  private updateUserData(user: Users) {
+    
+    const userRef: AngularFirestoreDocument<Users> = this.afs.doc(`users/${user.uid}`);
 
-    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
-
-    const data: User = {
+    const data: Users = {
       uid: user.uid,
       email: user.email || null,
-      displayName: user.displayName || 'nameless user',
-      photoURL: user.photoURL || 'https://goo.gl/Fz9nrQ',
+      displayName: user.displayName || '',
+      school: '',
+      grade: '',
+      photoURL: user.photoURL
     };
     return userRef.set(data);
   }
