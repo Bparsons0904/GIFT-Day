@@ -45,7 +45,8 @@ export class ClientService {
         return data;
       }
     });
-
+    console.log(this.client);
+    
     return this.client;
   }
 

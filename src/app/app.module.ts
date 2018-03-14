@@ -23,7 +23,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { ClientService } from './services/client.service';
 import { AuthService } from './services/auth.service';
-import { UsersService } from './services/users.service';
+import { UserService } from './services/user.service';
 
 // User Profile Addins
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
@@ -60,7 +60,7 @@ import { UserFormComponent } from './components/user-form/user-form.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [ClientService, AuthService, SettingsService, NotifyService, UsersService],
+  providers: [ClientService, AuthService, SettingsService, NotifyService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

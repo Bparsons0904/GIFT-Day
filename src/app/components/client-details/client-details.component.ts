@@ -31,7 +31,9 @@ export class ClientDetailsComponent implements OnInit {
         }
       }
 
-      this.client = client      
+      this.client = client 
+      console.log(client);
+           
     });
   }
 

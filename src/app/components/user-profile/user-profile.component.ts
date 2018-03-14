@@ -6,8 +6,13 @@ import {
   AngularFirestoreDocument
 } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
-import { Users } from '../../models/users';
-import { UsersService } from '../../services/users.service';
+import { User } from '../../models/user';
+import { UserService } from '../../services/user.service';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+
+import { ClientService } from '../../services/client.service';
+
+import { Client } from '../../models/Client';
 
 @Component({
   selector: 'app-user-profile',
@@ -17,27 +22,33 @@ import { UsersService } from '../../services/users.service';
 export class UserProfileComponent implements OnInit {
 
   id: string;
-  user: Observable<Users>;
+  user: User;
+  client: Client;
+  userID: string;
+
+
   
   constructor(
     public auth: AuthService,
     private flashMessage: FlashMessagesService,
     private afs: AngularFirestore,
-    private usersService: UsersService
+    private userService: UserService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private clientService: ClientService,
   ) { }
 
   ngOnInit() {
-    this.usersService.validUser;
     
   }
 
-  onSubmit({ value, valid }: { value: Users, valid: boolean }) {
+  onSubmit({ value, valid }: { value: User, valid: boolean }) {
     if (!valid) {
       this.flashMessage.show('Please fill out the form correctly.', {
         cssClass: 'alert-danger', timeout: 4000
       });
     } else {
-      this.usersService.updateUsers(value);
+      this.userService.updateUsers(value);
       this.flashMessage.show('User Profile Updated.', {
         cssClass: 'alert-success', timeout: 4000
       });
@@ -45,8 +56,18 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
-  idcheck() {
-    this.usersService.validUser
+  idcheck(uid: string) {
+    this.userService.getUser(uid).subscribe(user => {
+      this.user = user
+    });
   }
-
+  
+  getID(user: User) {
+    console.log(this.user.uid);
+      
+  }
+  getID2(user: User) {
+    console.log(user);
+      
+  }
 }
