@@ -11,7 +11,7 @@ import { UserService } from '../../services/user.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { ClientService } from '../../services/client.service';
-
+import { AngularFireAuth } from "angularfire2/auth";
 import { Client } from '../../models/Client';
 
 @Component({
@@ -37,6 +37,7 @@ export class UserProfileComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private clientService: ClientService,
+    private afAuth: AngularFireAuth,
   ) { }
 
   ngOnInit() {
@@ -53,17 +54,17 @@ export class UserProfileComponent implements OnInit {
       this.flashMessage.show('User Profile Updated.', {
         cssClass: 'alert-success', timeout: 4000
       });
-      // this.router.navigate(['/client/' + this.id])
+      this.router.navigate(['/'])
     }
   }
 
-  idcheck(uid: string) {
-    // this.userService.getUser(uid).subscribe(user => {
-    //   this.user = user
-    //   console.log(this.user.displayName);
+  // idcheck(uid: string) {
+  //   this.userService.getUser(uid).subscribe(user => {
+  //     this.user = user
+  //     console.log(this.user.displayName);
       
-    // });
+  //   });
     
-  }
+  // }
   
 }

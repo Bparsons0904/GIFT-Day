@@ -125,13 +125,14 @@ export class LoginComponent implements OnInit {
 
   /// Shared
   private afterSignIn() {
-    // this.userService.getUser(this.auth.getUid()).subscribe(user => {
-    //   this.user = user;
-    //   console.log(this.user);
+    this.userService.getUser(this.auth.getId()).subscribe(user => {
+      this.user = user;
       
-    // });
+      if(this.user.displayName != "" && this.user.school != "" && this.user.grade != "") {
+        this.router.navigate(['/']);
+      } else {
+        this.router.navigate(['/profile']);
+      }
+    });
   }
-    
-    // this.router.navigate(['/profile']);
-
 }

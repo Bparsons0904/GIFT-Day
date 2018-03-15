@@ -30,6 +30,7 @@ import { User } from '../models/user';
 export class AuthService {
   // User Profile Addin
   user: Observable<User>;
+  uid: string;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -62,9 +63,7 @@ export class AuthService {
   // }
 
   getAuth() {
-
     return this.afAuth.authState.map(auth => auth);
-
   }
 
   getAuthID() {
@@ -150,11 +149,20 @@ export class AuthService {
     this.notify.update(error.message, 'error');
   }
 
+  setId(uid: string) {
+    this.uid = uid
+  }
+
+  getId() {
+    return this.uid
+  }
   // Sets user data to firestore after succesful login
   private updateUserData(user: User) {
     
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
 
+    this.setId(user.uid);
+   
     if (user.displayName != null) {
       const data: User = {
         uid: user.uid,

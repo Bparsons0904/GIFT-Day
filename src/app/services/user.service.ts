@@ -47,9 +47,7 @@ export class UserService {
                 data.id = action.payload.id;
                 return data;
             }
-        });
-        console.log(this.user);
-        
+        });        
         return this.user;
     }
 
