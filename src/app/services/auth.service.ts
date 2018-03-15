@@ -62,6 +62,7 @@ export class AuthService {
   // }
 
   getAuth() {
+
     return this.afAuth.authState.map(auth => auth);
 
   }
@@ -158,8 +159,8 @@ export class AuthService {
       uid: user.uid,
       email: user.email || null,
       displayName: user.displayName || '',
-      school: '',
-      grade: '',
+      school: user.school,
+      grade: user.grade,
       photoURL: user.photoURL
     };
     return userRef.set(data);

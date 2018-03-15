@@ -27,6 +27,7 @@ export class UserProfileComponent implements OnInit {
   userID: string;
 
 
+
   
   constructor(
     public auth: AuthService,
@@ -57,17 +58,12 @@ export class UserProfileComponent implements OnInit {
   }
 
   idcheck(uid: string) {
-    this.userService.getUser(uid).subscribe(user => {
-      this.user = user
-    });
+    // this.userService.getUser(uid).subscribe(user => {
+    //   this.user = user
+    //   console.log(this.user.displayName);
+      
+    // });
+    
   }
   
-  getID(user: User) {
-    console.log(this.user.uid);
-      
-  }
-  getID2(user: User) {
-    console.log(user);
-      
-  }
 }

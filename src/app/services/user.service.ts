@@ -12,6 +12,7 @@ export class UserService {
     userDoc: AngularFirestoreDocument<User>;
     users: Observable<User[]>;
     user: Observable<User>;
+    completeProfile: boolean = false;
 
     constructor(private afs: AngularFirestore) {
         // this.usersCollection = this.afs.collection('users',

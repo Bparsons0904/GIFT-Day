@@ -3,6 +3,8 @@ import { AuthService } from '../../services/auth.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UserService } from '../../services/user.service';
+import { User } from '../../models/user';
 
 type UserFields = 'email' | 'password';
 type FormErrors = {[u in UserFields]: string };
@@ -14,6 +16,7 @@ type FormErrors = {[u in UserFields]: string };
 })
 export class LoginComponent implements OnInit {
 
+  user: User;
   email: string;
   password: string;
   userForm: FormGroup;
@@ -38,7 +41,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder, 
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private userService: UserService
   ) { }
 
   ngOnInit() {
@@ -121,8 +125,13 @@ export class LoginComponent implements OnInit {
 
   /// Shared
   private afterSignIn() {
-    // Do after login stuff here, such router redirects, toast messages, etc.
-    this.router.navigate(['/profile']);
+    // this.userService.getUser(this.auth.getUid()).subscribe(user => {
+    //   this.user = user;
+    //   console.log(this.user);
+      
+    // });
   }
+    
+    // this.router.navigate(['/profile']);
 
 }
