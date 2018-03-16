@@ -29,6 +29,7 @@ import { UserService } from './services/user.service';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { NotifyService } from './services/notify.service';
 import { UserFormComponent } from './components/user-form/user-form.component';
+import { HomeComponent } from './components/home/home.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { UserFormComponent } from './components/user-form/user-form.component';
     NotFoundComponent,
     // User Profile Addins
     UserProfileComponent,
-    UserFormComponent
+    UserFormComponent,
+    HomeComponent
 
   ],
   imports: [

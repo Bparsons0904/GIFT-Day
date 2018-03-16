@@ -1,0 +1,29 @@
+.card {
+    margin-bottom: 10px;
+}
+
+.card-header {
+    background-color: #e8af48;
+    color: white;
+    font-weight: bolder;
+}
+
+.card-body {
+    background-color: #d5f5ff;
+}
+
+.header-body {
+    font-family: 'Lora', serif;
+    font-size: 1.5em;
+}
+
+
+.header-title {
+    font-family: 'Slabo 27px', serif;
+    font-size: 3em;
+    font-weight: bold;
+}
+
+* {
+    font-family: 'Lora', serif;
+}

@@ -130,9 +130,8 @@ export class LoginComponent implements OnInit {
       
       if(this.user.displayName != "" && this.user.school != "" && this.user.grade != "") {
         this.router.navigate(['/']);
-      } else {
-        this.router.navigate(['/profile']);
       }
+      this.router.navigate(['/profile']);
     });
   }
 }
