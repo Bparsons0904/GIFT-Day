@@ -2,6 +2,7 @@
   <div class="row text-center">
     <div class="header-title">GIFT Day Workshops</div>
     <div class="header-body"></div>
+    <a *ngIf="admin" routerLink="/addworkshop">Add Workshops</a>
   </div>
   
   <div class="row">
@@ -21,7 +22,7 @@
             <p class="class-muted mr-auto details">Workshop Details</p>
             <p class="text-muted ml-auto available">Available Seats: {{ workshop.availableSeats }}</p> 
           </div>
-          
+          <a *ngIf="admin" routerLink="/editworkshop">Edit Workshops</a>
         </div>
       </div>
     </div>

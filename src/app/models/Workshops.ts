@@ -5,6 +5,6 @@ export interface Workshop {
     description: string;
     room: string;
     totalSeats: number;
-    availableSeats: number;
+    availableSeats?: number;
     imageURL?: string;
 }

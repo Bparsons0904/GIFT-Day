@@ -24,6 +24,10 @@ import { UserProfileComponent } from
   './components/user-profile/user-profile.component';
 import { WorkshopsComponent } from
   './components/workshops/workshops.component';
+import { AddworkshopComponent } from
+  './components/addworkshop/addworkshop.component';
+import { EditworkshopComponent } from
+  './components/editworkshop/editworkshop.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -36,6 +40,8 @@ const routes: Routes = [
   // User Profile Addins
   { path: 'profile', component: UserProfileComponent},
   { path: 'workshops', component: WorkshopsComponent},
+  { path: 'addworkshop', component: AddworkshopComponent},
+  { path: 'editworkshop', component: EditworkshopComponent},
   {path: '**', component: NotFoundComponent},
 ]
 @NgModule({

@@ -32,6 +32,8 @@ import { NotifyService } from './services/notify.service';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { HomeComponent } from './components/home/home.component';
 import { WorkshopsComponent } from './components/workshops/workshops.component';
+import { AddworkshopComponent } from './components/addworkshop/addworkshop.component';
+import { EditworkshopComponent } from './components/editworkshop/editworkshop.component';
 
 
 @NgModule({
@@ -52,7 +54,9 @@ import { WorkshopsComponent } from './components/workshops/workshops.component';
     UserProfileComponent,
     UserFormComponent,
     HomeComponent,
-    WorkshopsComponent
+    WorkshopsComponent,
+    AddworkshopComponent,
+    EditworkshopComponent
 
   ],
   imports: [

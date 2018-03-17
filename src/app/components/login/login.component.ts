@@ -127,7 +127,9 @@ export class LoginComponent implements OnInit {
   private afterSignIn() {
     this.userService.getUser(this.auth.getId()).subscribe(user => {
       this.user = user;
-      
+      if(this.user.admin) {
+        this.userService.admin = true;
+      }
       if(this.user.displayName != "" && this.user.school != "" && this.user.grade != "") {
         this.router.navigate(['/']);
       }

@@ -1,0 +1,1 @@
+workshop.component ngOnInit admin

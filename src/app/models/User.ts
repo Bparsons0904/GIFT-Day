@@ -10,5 +10,6 @@ export interface User {
     lastName?: string;
     phone?: string;
     balance?: number;
+    admin?: boolean;
 
 }
