@@ -1,3 +1,85 @@
 <p>
   editworkshop works!
 </p>
+<div class="card">
+  <div class="card-header">
+    Edit Workshop
+  </div>
+  <div class="card-body">
+    <form #workshopForm="ngForm" (ngSubmit)="onSubmit(workshopForm)">
+
+      <div class="form-group">
+        <label for="name">Workshop Name</label>
+        <input type="text" class="form-control" name="name" #workshopName="ngModel" [ngClass]="{'is-invalid':workshopName.errors && workshopName.touched}"
+          [(ngModel)]="workshop.name" minlength="2" required>
+        <div [hidden]="!workshopName.errors?.required" class="invalid-feedback">
+          Workshop Name Required
+        </div>
+        <div [hidden]="!workshopName.errors?.minlength" class="invalid-feedback">
+          Must be at least 2 characters
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="presenter">Presenter</label>
+        <input type="text" class="form-control" name="presenter" #workshopPresenter="ngModel" [ngClass]="{'is-invalid':workshopPresenter.errors && workshopPresenter.touched}"
+          [(ngModel)]="workshop.presenter" minlength="2" required>
+        <div [hidden]="!workshopPresenter.errors?.required" class="invalid-feedback">
+          Presenter Required
+        </div>
+        <div [hidden]="!workshopPresenter.errors?.minlength" class="invalid-feedback">
+          Must be at least 2 characters
+        </div>
+      </div>
+
+      <!-- <div class="form-group">
+        <label for="presenter">Presenter</label>
+        <input type="text" class="form-control" name="presenter" #clientEmail="ngModel" [ngClass]="{'is-invalid':clientEmail.errors && clientEmail.touched}"
+          [(ngModel)]="workshop.email" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+        <div [hidden]="!clientEmail.errors?.required" class="invalid-feedback">
+          Email Required
+        </div>
+        <div [hidden]="!clientEmail.errors?.pattern" class="invalid-feedback">
+          Email is not valid.
+        </div>
+      </div> -->
+
+      <div class="form-group">
+        <label for="description">Workshop Description</label>
+        <input type="text" class="form-control" [ngClass]="{'is-invalid':workshopDescription.errors && workshopDescription.touched}"
+          [(ngModel)]="workshop.description" name="description" #workshopDescription="ngModel" minlength="10" required>
+        <div [hidden]="!workshopDescription.errors?.required" class="invalid-feedback">
+          Description is required
+        </div>
+        <div [hidden]="!workshopDescription.errors?.minlength" class="invalid-feedback">
+          Description must be at least 10 characters
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="room">Workshop Room</label>
+        <input type="text" class="form-control" [ngClass]="{'is-invalid':workshopRoom.errors && workshopRoom.touched}" [(ngModel)]="workshop.room"
+          name="room" #workshopRoom="ngModel" minlength="3" required>
+        <div [hidden]="!workshopRoom.errors?.required" class="invalid-feedback">
+          Room is required
+        </div>
+        <div [hidden]="!workshopRoom.errors?.minlength" class="invalid-feedback">
+          Room must be at least 3 characters
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="totalSeats">Total Seats</label>
+        <input type="number" class="form-control" [(ngModel)]="workshop.totalSeats" name="totalSeats" #workshopTotalSeats="ngModel">
+      </div>
+
+      <div class="form-group">
+        <label for="imageURL">Workshop Image</label>
+        <input type="string" class="form-control" [(ngModel)]="workshop.imageURL" name="imageURL" #workshopimageURL="ngModel">
+      </div>
+
+      <input type="submit" value="Submit" class="btn btn-primary btn-block">
+
+    </form>
+  </div>
+</div>

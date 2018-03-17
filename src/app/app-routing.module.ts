@@ -41,7 +41,7 @@ const routes: Routes = [
   { path: 'profile', component: UserProfileComponent},
   { path: 'workshops', component: WorkshopsComponent},
   { path: 'addworkshop', component: AddworkshopComponent},
-  { path: 'editworkshop', component: EditworkshopComponent},
+  { path: 'editworkshop/:id', component: EditworkshopComponent},
   {path: '**', component: NotFoundComponent},
 ]
 @NgModule({
