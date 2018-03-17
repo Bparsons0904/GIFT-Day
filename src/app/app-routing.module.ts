@@ -22,6 +22,8 @@ import { HomeComponent } from './components/home/home.component';
 // User Profile Addins
 import { UserProfileComponent } from
   './components/user-profile/user-profile.component';
+import { WorkshopsComponent } from
+  './components/workshops/workshops.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -33,6 +35,7 @@ const routes: Routes = [
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard]},
   // User Profile Addins
   { path: 'profile', component: UserProfileComponent},
+  { path: 'workshops', component: WorkshopsComponent},
   {path: '**', component: NotFoundComponent},
 ]
 @NgModule({

@@ -25,3 +25,12 @@
     color: #e8af48;
 }
 
+.details {
+    margin-bottom: 0px;
+    padding-left: 10px;
+}
+
+.available {
+    margin-bottom: 0px;
+    padding-right: 10px;
+}

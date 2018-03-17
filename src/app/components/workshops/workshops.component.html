@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="row text-center">
+    <div class="header-title">GIFT Day Workshops</div>
+    <div class="header-body"></div>
+  </div>
+  
+  <div class="row">
+    <div class="card-deck">
+      <div class="card" *ngFor="let workshop of workshops">
+        <img  class="img-fluid" src="{{ workshop.imageURL }}" alt="{{ workshop.name + 'image' }}">
+        <div class="card-body">
+          <h3 class="card-text">
+            {{ workshop.name }}
+          </h3>
+          <p class="card-text" >
+             {{ (workshop.description.length > 200)? (workshop.description | slice:0:200) + '...':(workshop.description) }}
+          </p>
+        </div>
+        <div class="card-footer">
+          <div class="row">
+            <p class="class-muted mr-auto details">Workshop Details</p>
+            <p class="text-muted ml-auto available">Available Seats: {{ workshop.availableSeats }}</p> 
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+
+
+
+
+<!-- <table *ngIf="workshops?.length > 0; else noWorkshops" class="table table-striped">
+  <thead class="thead-inverse">
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Available Seats</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let workshop of workshops">
+      <td>{{ workshop.name}}</td>
+      <td>{{ workshop.presenter }}</td>
+      <td>{{ workshop.availableSeats }}</td>
+      <td>
+        <a routerLink="client/{{ client.id }}" class="btn btn-secondary btn-sm">
+          <i class="fa fa-arrow-circle-o-right"> Details</i>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table> -->
+
+
+
+
+
+<ng-template #noWOrkshops>
+  <hr>
+  <h5>Sorry, currently there are no Workshops Available.</h5>
+</ng-template>

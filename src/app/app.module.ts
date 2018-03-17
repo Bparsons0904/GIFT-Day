@@ -24,12 +24,14 @@ import { AppRoutingModule } from './/app-routing.module';
 import { ClientService } from './services/client.service';
 import { AuthService } from './services/auth.service';
 import { UserService } from './services/user.service';
+import { WorkshopsService } from './services/workshops.service';
 
 // User Profile Addins
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { NotifyService } from './services/notify.service';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { HomeComponent } from './components/home/home.component';
+import { WorkshopsComponent } from './components/workshops/workshops.component';
 
 
 @NgModule({
@@ -49,7 +51,8 @@ import { HomeComponent } from './components/home/home.component';
     // User Profile Addins
     UserProfileComponent,
     UserFormComponent,
-    HomeComponent
+    HomeComponent,
+    WorkshopsComponent
 
   ],
   imports: [
@@ -62,7 +65,7 @@ import { HomeComponent } from './components/home/home.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [ClientService, AuthService, SettingsService, NotifyService, UserService],
+  providers: [ClientService, AuthService, SettingsService, NotifyService, UserService, WorkshopsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
