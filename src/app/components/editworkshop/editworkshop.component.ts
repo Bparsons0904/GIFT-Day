@@ -49,4 +49,14 @@ export class EditworkshopComponent implements OnInit {
       // this.router.navigate(['/workshops/' + this.id])
     }
   }
+
+  onDeleteClick() {
+    if (confirm('Are you sure?')) {
+      this.wss.deleteWorkshop(this.workshop);
+      this.flashMessage.show('Workshop Removed', {
+        cssClass: 'alert-success', timeout: 4000
+      });
+      this.router.navigate(['/workshops']);
+    }
+  }
 }

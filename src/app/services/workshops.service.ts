@@ -49,8 +49,6 @@ export class WorkshopsService {
         return data;
       }
     });
-    console.log(this.workshop);
-
     return this.workshop;
   }
 

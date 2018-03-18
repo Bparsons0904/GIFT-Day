@@ -11,6 +11,7 @@ import { UserService } from '../../services/user.service';
 export class WorkshopsComponent implements OnInit {
   workshops: Workshop[];
   admin: boolean;
+  tab: boolean;
 
   constructor(
     private wss: WorkshopsService,
@@ -21,6 +22,12 @@ export class WorkshopsComponent implements OnInit {
     this.wss.getWorkshops().subscribe(workshops => {
       this.workshops = workshops;
     });
+    this.tab = true;
+    // if (window.innerWidth < 992 && window.innerWidth > 577) { // 768px portrait
+    //   this.tab = true;
+    // } else {
+    //   this.tab = false
+    // }
 
     // Remove for production
     // this.admin = this.userservice.admin;

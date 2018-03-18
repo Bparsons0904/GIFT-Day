@@ -33,6 +33,7 @@ const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent, canActivate:[RegisterGuard]},
+  { path: 'dashboard', component: DashboardComponent },
   { path: 'client/add', component: AddClientComponent, canActivate: [AuthGuard]},
   { path: 'client/edit/:id', component: EditClientComponent, canActivate: [AuthGuard]},
   { path: 'client/:id', component: ClientDetailsComponent, canActivate: [AuthGuard]},
