@@ -10,4 +10,5 @@ export interface Workshop {
     totalSeats: number;
     availableSeats?: number;
     imageURL?: string;
+    registered?: any[];
 }

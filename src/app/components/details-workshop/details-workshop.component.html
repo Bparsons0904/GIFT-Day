@@ -1,25 +1,39 @@
-<div class="row">
+<div class="row" *ngIf="workshop">
+  <p *ngFor="let register of workshop.registered">{{ register }}</p>
   <div class="col-md-6 workshop-header">
     <a routerLink="/workshops" class="btn btn-sm btn-outline-info">
       <i class="fa fa-backward"></i> All Workshops
     </a>
-    <h1>{{ workshop.name }}</h1>
-    <p>{{ workshop.presenter }}</p>
-    <p>{{ workshop.totalSeats }}</p>
-    <p>{{ workshop.availableSeats }}</p>
+    <h1>{{ workshop?.name }}</h1>
+    <p routerLink="/presenters/{{ workshop?.presenter?.id }}">{{ workshop?.presenter.name }}</p>
+    <p>{{ workshop?.totalSeats }}</p>
+    <p>{{ workshop?.availableSeats }}</p>
   </div>
   <div class="col-md-6 workshop-image">
-    <img class="img-fluid" src="{{ workshop.imageURL }}" alt="{{ workshop.name + 'image' }}">
+    <img class="img-fluid" src="{{ workshop?.imageURL }}" alt="{{ workshop.name + 'image' }}">
   </div>
 </div>
 <div class="row">
   <div class="workshop-description">
-    <p>{{ workshop.description }}</p>
+    <p>{{ workshop?.description }}</p>
   </div>
   <div>
     <a routerLink="/workshops" class="btn btn-sm btn-outline-info">
       <i class="fa fa-backward"></i> All Workshops
     </a>
   </div>
- 
+  <button class="btn btn-primary" (click)="workshopRegister()">Register for Workshop</button>
+  
 </div>
+  
+<!-- <div *ngIf="workshop">
+  <div *ngIf="registered">
+    <p *ngFor="let register in registered">{{ register }}</p>
+    Test
+  </div>
+
+  
+</div> -->
+
+
+
