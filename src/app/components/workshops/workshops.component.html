@@ -15,7 +15,7 @@
           <h3 class="card-text">
             {{ workshop.name }}
           </h3>
-          <p class="card-text">{{ workshop.presenter }}</p>
+          <p class="card-text">{{ workshop.presenter.name }}</p>
           <p class="card-text">
             {{ (workshop.description.length > 200)? (workshop.description | slice:0:200) + '...':(workshop.description) }}
           </p>

@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { WorkshopsService } from '../../services/workshops.service';
 import { Workshop } from '../../models/Workshops';
+import { PresenterService } from '../../services/presenter.service';
+import { Presenter } from '../../models/presenter';
 
 @Component({
   selector: 'app-addworkshop',
@@ -13,7 +15,10 @@ export class AddworkshopComponent implements OnInit {
 
   workshop: Workshop = {
     name: '',
-    presenter: '',
+    presenter: {
+      id: '',
+      name: '',
+    },
     description: '',
     room: '',
     totalSeats: 0,
@@ -21,15 +26,21 @@ export class AddworkshopComponent implements OnInit {
     imageURL: 'https://placeimg.com/300/240/tech'
   }
 
+  presenters: Presenter[];
+
   @ViewChild('workshopForm') form: any;
 
   constructor(
     private flashMessage: FlashMessagesService,
     private wss: WorkshopsService,
     private router: Router,
+    private presenterService: PresenterService,
   ) { }
 
   ngOnInit() {
+    this.presenterService.getPresenters().subscribe(presenters => {
+      this.presenters = presenters;
+    });
   }
 
   onSubmit({ value, valid }: { value: Workshop, valid: boolean }) {

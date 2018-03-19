@@ -1,7 +1,10 @@
 export interface Workshop {
     id?: string;
     name: string;
-    presenter: string;
+    presenter: {
+        id: string;
+        name: string;
+    };
     description: string;
     room: string;
     totalSeats: number;
