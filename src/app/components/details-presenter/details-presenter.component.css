@@ -1,0 +1,46 @@
+.bio-image {
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+.bio-image img {
+    width: 100%;
+}
+
+.bio {
+    padding: 20px;
+}
+
+.bio-header h1 {
+    color: #e8af48;
+}
+.bio-header p {
+    font-size: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.bio-header a {
+    font-size: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+@media (min-width: 576px) { 
+    .bio-image img {
+        max-width: 360px;
+    }
+    .bio-image {
+        margin-top: 5px;
+    }
+    .bio-header h1 {
+        margin-bottom: 20px;
+    }
+    .bio-header p {
+        margin-top: 10px;
+    }
+    .bio-header a {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+ }

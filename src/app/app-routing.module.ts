@@ -28,6 +28,16 @@ import { AddworkshopComponent } from
   './components/addworkshop/addworkshop.component';
 import { EditworkshopComponent } from
   './components/editworkshop/editworkshop.component';
+import { PresentersComponent } from
+  './components/presenters/presenters.component';
+import { AddPresenterComponent } from
+  './components/add-presenter/add-presenter.component';
+import { EditPresenterComponent } from
+  './components/edit-presenter/edit-presenter.component';
+import { DetailsPresenterComponent } from
+  './components/details-presenter/details-presenter.component';
+import { DetailsWorkshopComponent } from
+  './components/details-workshop/details-workshop.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -41,8 +51,13 @@ const routes: Routes = [
   // User Profile Addins
   { path: 'profile', component: UserProfileComponent},
   { path: 'workshops', component: WorkshopsComponent},
-  { path: 'addworkshop', component: AddworkshopComponent},
-  { path: 'editworkshop/:id', component: EditworkshopComponent},
+  { path: 'workshops/add', component: AddworkshopComponent},
+  { path: 'workshops/edit/:id', component: EditworkshopComponent},
+  { path: 'workshops/:id', component: DetailsWorkshopComponent},
+  { path: 'presenters', component: PresentersComponent},
+  { path: 'presenters/add', component: AddPresenterComponent},
+  { path: 'presenters/edit/:id', component: EditPresenterComponent},
+  { path: 'presenters/:id', component: DetailsPresenterComponent },
   {path: '**', component: NotFoundComponent},
 ]
 @NgModule({

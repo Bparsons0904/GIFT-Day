@@ -40,7 +40,7 @@ export class AddworkshopComponent implements OnInit {
     } else {
       value.availableSeats = value.totalSeats;
       this.wss.newWorkshop(value);
-      this.flashMessage.show('New client added', {
+      this.flashMessage.show('New workshop added', {
         cssClass: 'alert-success', timeout: 4000
       });
       this.router.navigate(['/workshops']);

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WorkshopsService } from '../../services/workshops.service';
-import { Workshop } from '../../models/Workshops';
-import { UserService } from '../../services/user.service';
+import { Workshop } from '../../models/Workshops';;
 
 @Component({
   selector: 'app-workshops',
@@ -15,7 +14,6 @@ export class WorkshopsComponent implements OnInit {
 
   constructor(
     private wss: WorkshopsService,
-    private userservice: UserService
   ) { }
 
   ngOnInit() {

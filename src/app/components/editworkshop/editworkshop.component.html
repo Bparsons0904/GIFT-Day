@@ -1,40 +1,35 @@
+<div class="card">
+  <div class="card-header">
+    Edit Workshop
+  </div>
+  <div class="card-body">
+    <form #workshopForm="ngForm" (ngSubmit)="onSubmit(workshopForm)">
 
-
-
-
-<div class="container">
-  <div class="card">
-    <div class="card-header">
-      Edit Workshop
-    </div>
-    <div class="card-body">
-      <form #workshopForm="ngForm" (ngSubmit)="onSubmit(workshopForm)">
-  
-        <div class="form-group">
-          <label for="name">Workshop Name</label>
-          <input type="text" class="form-control" name="name" #workshopName="ngModel" [ngClass]="{'is-invalid':workshopName.errors && workshopName.touched}"
-            [(ngModel)]="workshop.name" minlength="2" required>
-          <div [hidden]="!workshopName.errors?.required" class="invalid-feedback">
-            Workshop Name Required
-          </div>
-          <div [hidden]="!workshopName.errors?.minlength" class="invalid-feedback">
-            Must be at least 2 characters
-          </div>
+      <div class="form-group">
+        <label for="name">Workshop Name</label>
+        <input type="text" class="form-control" name="name" #workshopName="ngModel" [ngClass]="{'is-invalid':workshopName.errors && workshopName.touched}"
+          [(ngModel)]="workshop.name" minlength="2" required>
+        <div [hidden]="!workshopName.errors?.required" class="invalid-feedback">
+          Workshop Name Required
         </div>
-  
-        <div class="form-group">
-          <label for="presenter">Presenter</label>
-          <input type="text" class="form-control" name="presenter" #workshopPresenter="ngModel" [ngClass]="{'is-invalid':workshopPresenter.errors && workshopPresenter.touched}"
-            [(ngModel)]="workshop.presenter" minlength="2" required>
-          <div [hidden]="!workshopPresenter.errors?.required" class="invalid-feedback">
-            Presenter Required
-          </div>
-          <div [hidden]="!workshopPresenter.errors?.minlength" class="invalid-feedback">
-            Must be at least 2 characters
-          </div>
+        <div [hidden]="!workshopName.errors?.minlength" class="invalid-feedback">
+          Must be at least 2 characters
         </div>
-  
-        <!-- <div class="form-group">
+      </div>
+
+      <div class="form-group">
+        <label for="presenter">Presenter</label>
+        <input type="text" class="form-control" name="presenter" #workshopPresenter="ngModel" [ngClass]="{'is-invalid':workshopPresenter.errors && workshopPresenter.touched}"
+          [(ngModel)]="workshop.presenter" minlength="2" required>
+        <div [hidden]="!workshopPresenter.errors?.required" class="invalid-feedback">
+          Presenter Required
+        </div>
+        <div [hidden]="!workshopPresenter.errors?.minlength" class="invalid-feedback">
+          Must be at least 2 characters
+        </div>
+      </div>
+
+      <!-- <div class="form-group">
           <label for="presenter">Presenter</label>
           <input type="text" class="form-control" name="presenter" #clientEmail="ngModel" [ngClass]="{'is-invalid':clientEmail.errors && clientEmail.touched}"
             [(ngModel)]="workshop.email" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
@@ -45,72 +40,69 @@
             Email is not valid.
           </div>
         </div> -->
-  
-        <div class="form-group">
-          <label for="description">Workshop Description</label>
-          <input type="text" class="form-control" [ngClass]="{'is-invalid':workshopDescription.errors && workshopDescription.touched}"
-            [(ngModel)]="workshop.description" name="description" #workshopDescription="ngModel" minlength="10" required>
-          <div [hidden]="!workshopDescription.errors?.required" class="invalid-feedback">
-            Description is required
-          </div>
-          <div [hidden]="!workshopDescription.errors?.minlength" class="invalid-feedback">
-            Description must be at least 10 characters
-          </div>
+
+      <div class="form-group">
+        <label for="description">Workshop Description</label>
+        <input type="text" class="form-control" [ngClass]="{'is-invalid':workshopDescription.errors && workshopDescription.touched}"
+          [(ngModel)]="workshop.description" name="description" #workshopDescription="ngModel" minlength="10" required>
+        <div [hidden]="!workshopDescription.errors?.required" class="invalid-feedback">
+          Description is required
         </div>
-  
-        <div class="form-group">
-          <label for="room">Workshop Room</label>
-          <input type="text" class="form-control" [ngClass]="{'is-invalid':workshopRoom.errors && workshopRoom.touched}" [(ngModel)]="workshop.room"
-            name="room" #workshopRoom="ngModel" minlength="3" required>
-          <div [hidden]="!workshopRoom.errors?.required" class="invalid-feedback">
-            Room is required
-          </div>
-          <div [hidden]="!workshopRoom.errors?.minlength" class="invalid-feedback">
-            Room must be at least 3 characters
-          </div>
+        <div [hidden]="!workshopDescription.errors?.minlength" class="invalid-feedback">
+          Description must be at least 10 characters
         </div>
-  
-        <div class="form-group">
-          <label for="totalSeats">Total Seats</label>
-          <input type="number" class="form-control" [(ngModel)]="workshop.totalSeats" name="totalSeats" #workshopTotalSeats="ngModel">
+      </div>
+
+      <div class="form-group">
+        <label for="room">Workshop Room</label>
+        <input type="text" class="form-control" [ngClass]="{'is-invalid':workshopRoom.errors && workshopRoom.touched}" [(ngModel)]="workshop.room"
+          name="room" #workshopRoom="ngModel" minlength="3" required>
+        <div [hidden]="!workshopRoom.errors?.required" class="invalid-feedback">
+          Room is required
         </div>
-  
-        <div class="form-group">
-          <label for="imageURL">Workshop Image</label>
-          <input type="string" class="form-control" [(ngModel)]="workshop.imageURL" name="imageURL" #workshopimageURL="ngModel">
+        <div [hidden]="!workshopRoom.errors?.minlength" class="invalid-feedback">
+          Room must be at least 3 characters
         </div>
-  
-        <input type="submit" value="Submit Edit" class="btn btn-primary btn-block">
-        <button (click)="onDeleteClick(workshop)" class="btn btn-block btn-danger">Delete Workshop</button>
-      </form>
-    </div>
+      </div>
+
+      <div class="form-group">
+        <label for="totalSeats">Total Seats</label>
+        <input type="number" class="form-control" [(ngModel)]="workshop.totalSeats" name="totalSeats" #workshopTotalSeats="ngModel">
+      </div>
+
+      <div class="form-group">
+        <label for="imageURL">Workshop Image</label>
+        <input type="string" class="form-control" [(ngModel)]="workshop.imageURL" name="imageURL" #workshopimageURL="ngModel">
+      </div>
+
+      <input type="submit" value="Submit Edit" class="btn btn-primary btn-block">
+      <button (click)="onDeleteClick(workshop)" class="btn btn-block btn-danger">Delete Workshop</button>
+    </form>
   </div>
+</div>
 
 
-  <div class="row">
-    <div class="preview text-center">
-      <h2>Edit Preview</h2>
-    </div>
-    <div class="card-deck">
-      <div class="card">
-        <img class="img-fluid" src="{{ workshop.imageURL }}" alt="{{ workshop.name + ' image' }}">
-        <div class="card-body">
-          <h3 class="card-text">{{ workshop.name }}</h3>
-          <p class="card-text" >{{ workshop.presenter }}</p>
-          <p class="card-text">
-            {{ (workshop.description.length > 200)? (workshop.description | slice:0:200) + '...':(workshop.description) }}
-          </p>
+<div class="row">
+  <div class="preview text-center">
+    <h2>Edit Preview</h2>
+  </div>
+  <div class="card-deck">
+    <div class="card">
+      <img class="img-fluid" src="{{ workshop.imageURL }}" alt="{{ workshop.name + ' image' }}">
+      <div class="card-body">
+        <h3 class="card-text">{{ workshop.name }}</h3>
+        <p class="card-text">{{ workshop.presenter }}</p>
+        <p class="card-text">
+          {{ (workshop.description.length > 200)? (workshop.description | slice:0:200) + '...':(workshop.description) }}
+        </p>
+      </div>
+      <div class="card-footer">
+        <div class="row">
+          <p class="class-muted mr-auto details">Workshop Details</p>
+          <p class="text-muted ml-auto available">Available Seats: {{ workshop.availableSeats }}</p>
         </div>
-        <div class="card-footer">
-          <div class="row">
-            <p class="class-muted mr-auto details">Workshop Details</p>
-            <p class="text-muted ml-auto available">Available Seats: {{ workshop.availableSeats }}</p>
-          </div>
-          <a *ngIf="admin" routerLink="/editworkshop/{{ workshop.id }}">Edit Workshops</a>
-        </div>
+        <a *ngIf="admin" routerLink="/editworkshop/{{ workshop.id }}">Edit Workshops</a>
       </div>
     </div>
   </div>
-
-
 </div>

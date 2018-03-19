@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-md-6 workshop-header">
+    <a routerLink="/workshops" class="btn btn-sm btn-outline-info">
+      <i class="fa fa-backward"></i> All Workshops
+    </a>
+    <h1>{{ workshop.name }}</h1>
+    <p>{{ workshop.presenter }}</p>
+    <p>{{ workshop.totalSeats }}</p>
+    <p>{{ workshop.availableSeats }}</p>
+  </div>
+  <div class="col-md-6 workshop-image">
+    <img class="img-fluid" src="{{ workshop.imageURL }}" alt="{{ workshop.name + 'image' }}">
+  </div>
+</div>
+<div class="row">
+  <div class="workshop-description">
+    <p>{{ workshop.description }}</p>
+  </div>
+  <div>
+    <a routerLink="/workshops" class="btn btn-sm btn-outline-info">
+      <i class="fa fa-backward"></i> All Workshops
+    </a>
+  </div>
+ 
+</div>

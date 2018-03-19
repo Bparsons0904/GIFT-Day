@@ -25,6 +25,7 @@ import { ClientService } from './services/client.service';
 import { AuthService } from './services/auth.service';
 import { UserService } from './services/user.service';
 import { WorkshopsService } from './services/workshops.service';
+import { PresenterService } from './services/presenter.service';
 
 // User Profile Addins
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
@@ -34,6 +35,11 @@ import { HomeComponent } from './components/home/home.component';
 import { WorkshopsComponent } from './components/workshops/workshops.component';
 import { AddworkshopComponent } from './components/addworkshop/addworkshop.component';
 import { EditworkshopComponent } from './components/editworkshop/editworkshop.component';
+import { PresentersComponent } from './components/presenters/presenters.component';
+import { AddPresenterComponent } from './components/add-presenter/add-presenter.component';
+import { EditPresenterComponent } from './components/edit-presenter/edit-presenter.component';
+import { DetailsPresenterComponent } from './components/details-presenter/details-presenter.component';
+import { DetailsWorkshopComponent } from './components/details-workshop/details-workshop.component';
 
 
 @NgModule({
@@ -56,7 +62,12 @@ import { EditworkshopComponent } from './components/editworkshop/editworkshop.co
     HomeComponent,
     WorkshopsComponent,
     AddworkshopComponent,
-    EditworkshopComponent
+    EditworkshopComponent,
+    PresentersComponent,
+    AddPresenterComponent,
+    EditPresenterComponent,
+    DetailsPresenterComponent,
+    DetailsWorkshopComponent
 
   ],
   imports: [
@@ -69,7 +80,7 @@ import { EditworkshopComponent } from './components/editworkshop/editworkshop.co
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [ClientService, AuthService, SettingsService, NotifyService, UserService, WorkshopsService],
+  providers: [ClientService, AuthService, SettingsService, NotifyService, UserService, WorkshopsService, PresenterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
