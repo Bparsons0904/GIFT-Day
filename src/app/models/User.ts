@@ -6,10 +6,11 @@ export interface User {
     school?: string;
     photoURL?: string;
     id?: string;
-    firstName?: string;
-    lastName?: string;
-    phone?: string;
-    balance?: number;
+    // firstName?: string;
+    // lastName?: string;
+    // phone?: string;
+    // balance?: number;
     admin?: boolean;
+    workshops: any[];
 
 }

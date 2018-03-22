@@ -10,9 +10,11 @@ import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
-import { ClientService } from '../../services/client.service';
-import { AngularFireAuth } from "angularfire2/auth";
-import { Client } from '../../models/Client';
+// import { ClientService } from '../../services/client.service';
+// import { AngularFireAuth } from "angularfire2/auth";
+// import { Client } from '../../models/Client';
+import { WorkshopsService } from '../../services/workshops.service';
+import { Workshop } from '../../models/Workshops';;
 
 @Component({
   selector: 'app-user-profile',
@@ -23,24 +25,37 @@ export class UserProfileComponent implements OnInit {
 
   id: string;
   user: User;
-  client: Client;
+  // client: Client;
   userID: string;
-
-
+  workshops: Workshop[];
+  registeredWorkshop: any[];
+  test: Observable<User>;
+  uid: string;
 
   
   constructor(
     public auth: AuthService,
     private flashMessage: FlashMessagesService,
-    private afs: AngularFirestore,
+    // private afs: AngularFirestore,
     private userService: UserService,
     private router: Router,
     private route: ActivatedRoute,
-    private clientService: ClientService,
-    private afAuth: AngularFireAuth,
+    private wss: WorkshopsService,
+    // private clientService: ClientService,
+    // private afAuth: AngularFireAuth,
   ) { }
 
   ngOnInit() {
+    this.wss.getWorkshops().subscribe(workshops => {
+      this.workshops = workshops;
+      this.auth.user.subscribe(user => {
+        this.uid = user.uid;
+        this.userService.getUser(this.uid).subscribe(user => {
+          this.user = user;
+        });
+
+
+    });
     
   }
 
@@ -50,6 +65,10 @@ export class UserProfileComponent implements OnInit {
         cssClass: 'alert-danger', timeout: 4000
       });
     } else {
+      if(value.workshops == null) {
+        value.workshops = [];
+      }
+      
       this.userService.updateUsers(value);
       this.flashMessage.show('User Profile Updated.', {
         cssClass: 'alert-success', timeout: 4000
@@ -58,13 +77,10 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
-  // idcheck(uid: string) {
-  //   this.userService.getUser(uid).subscribe(user => {
-  //     this.user = user
-  //     console.log(this.user.displayName);
-      
-  //   });
+  idcheck() {
+    this.test = this.auth.getAuthID(); 
+    console.log(this.auth.getAuthID());
     
-  // }
+  }
   
 }

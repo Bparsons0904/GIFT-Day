@@ -31,6 +31,8 @@ export class AuthService {
   // User Profile Addin
   user: Observable<User>;
   uid: string;
+  test: string;
+  authState; any = null;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -47,7 +49,11 @@ export class AuthService {
         } else {
           return Observable.of(null)
         }
-      })
+      });
+
+    this.afAuth.authState.subscribe((auth) => {
+      this.authState = auth
+    });
   }
 
   // login(email: string, password: string) {
@@ -67,7 +73,8 @@ export class AuthService {
   }
 
   getAuthID() {
-    return this.afAuth.auth;
+    return this.authState.uid
+    // return this.afAuth.auth;
   }
 
   logout() {

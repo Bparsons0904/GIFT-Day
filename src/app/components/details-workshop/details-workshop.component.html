@@ -1,5 +1,4 @@
 <div class="row" *ngIf="workshop">
-  <p *ngFor="let register of workshop.registered">{{ register }}</p>
   <div class="col-md-6 workshop-header">
     <a routerLink="/workshops" class="btn btn-sm btn-outline-info">
       <i class="fa fa-backward"></i> All Workshops
@@ -22,8 +21,8 @@
       <i class="fa fa-backward"></i> All Workshops
     </a>
   </div>
-  <button class="btn btn-primary" (click)="workshopRegister()">Register for Workshop</button>
-  
+  <button class="btn btn-primary" (click)="workshopRegister()" [disabled]="registered" >Register for Workshop</button>
+  <button class="btn btn-primary" (click)="deleteRegistration()" [disabled]="!registered">Remove Registration</button>
 </div>
   
 <!-- <div *ngIf="workshop">

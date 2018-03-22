@@ -9,6 +9,7 @@ import { Workshop } from '../../models/Workshops';;
 })
 export class WorkshopsComponent implements OnInit {
   workshops: Workshop[];
+  
   admin: boolean;
   tab: boolean;
 

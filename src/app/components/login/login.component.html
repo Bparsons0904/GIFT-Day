@@ -69,7 +69,7 @@
   </div>
 </div>
 
-<div *ngIf="!(auth.user | async); else alreadyLoggedIn">
+<!-- <div *ngIf="!(auth.user | async); else alreadyLoggedIn">
 
   <h3>Social Login</h3>
 
@@ -79,23 +79,23 @@
 
   <button (click)="signInWithFacebook()" class="button  btn-social btn-facebook">
     <i class="fa fa-facebook fa-lg"></i> Connect Facebook
-  </button>
+  </button> -->
 
   <!-- <button (click)="signInWithTwitter()" class="button  btn-social btn-twitter" disabled>
     <i class="fa fa-twitter fa-lg"></i> Connect Twitter
   </button> -->
 
-  <hr>
+  <!-- <hr> -->
 
   <!-- <user-form></user-form> -->
 
-</div>
+<!-- </div> -->
 <div>
   <button (click)="afterSignIn()">Authid test</button>
 </div>
 
-<ng-template #alreadyLoggedIn>
+<!-- <ng-template #alreadyLoggedIn>
   <p class="text-success">
     Already logged in!
   </p>
-</ng-template>
+</ng-template> -->

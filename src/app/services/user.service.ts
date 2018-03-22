@@ -16,8 +16,8 @@ export class UserService {
     admin: boolean = false;
 
     constructor(private afs: AngularFirestore) {
-        // this.usersCollection = this.afs.collection('users',
-        //     ref => ref.orderBy('lastName', 'asc'));
+        this.usersCollection = this.afs.collection('users',
+            ref => ref.orderBy('lastName', 'asc'));
 
     }
 
@@ -48,13 +48,26 @@ export class UserService {
                 data.id = action.payload.id;
                 return data;
             }
-        });        
+        });
+      
         return this.user;
     }
 
     updateUsers(user: User) {
         this.userDoc = this.afs.doc(`users/${user.uid}`);
         this.userDoc.update(user);
+    }
+
+    addUserRegistration(user: User) {
+        this.userDoc = this.afs.doc(`users/${user.uid}`);
+        this.userDoc.update(user);        
+    }
+
+    removeUserRegistration(user: User) {
+        this.userDoc = this.afs.doc(`users/${user.uid}`);
+        console.log(user);
+        
+        this.userDoc.update(user);        
     }
 
     // validUser(users: Users) {
