@@ -15,7 +15,7 @@
           <h3 class="card-text">
             {{ workshop.name }}
           </h3>
-          <p class="card-text">{{ workshop.presenter.name }}</p>
+          <!-- <p class="card-text">{{ workshop.presenter.name }}</p> -->
           <p class="card-text">
             {{ (workshop.description.length > 200)? (workshop.description | slice:0:200) + '...':(workshop.description) }}
           </p>
@@ -23,7 +23,7 @@
         <div class="card-footer">
           <div class="row">
             <p class="class-muted mr-auto details" routerLink="/workshops/{{ workshop.id }}">Workshop Details</p>
-            <p class="text-muted ml-auto available">Available Seats: {{ workshop.availableSeats }}</p>
+            <p class="text-muted ml-auto available">Available Seats: {{ workshop.session1.availableSeats }}</p>
           </div>
           <a *ngIf="admin" routerLink="/workshops/edit/{{ workshop.id }}">Edit Workshops</a>
         </div>

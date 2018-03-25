@@ -41,14 +41,14 @@ export class DetailsWorkshopComponent implements OnInit {
       this.userService.getUser(this.uid).subscribe(user => {
         this.user = user;
       });
-      if (this.workshop.registered.indexOf(this.uid) > -1) {
-        this.registered = true;
-        this.registeredPosition = this.workshop.registered.indexOf(this.uid)
-        console.log(this.registered, this.registeredPosition);
+      // if (this.workshop.registered.indexOf(this.uid) > -1) {
+      //   this.registered = true;
+      //   this.registeredPosition = this.workshop.registered.indexOf(this.uid)
+      //   console.log(this.registered, this.registeredPosition);
 
-      } else {
-        this.registered = false;
-      }
+      // } else {
+      //   this.registered = false;
+      // }
       
     });
 
@@ -87,26 +87,26 @@ export class DetailsWorkshopComponent implements OnInit {
   //   console.log(this.workshop.registered);
   // }
 
-  workshopRegister() {
-    this.workshop.registered.push(this.uid); 
-    this.workshop.availableSeats -= 1;
-    this.wss.updateWorkshop(this.workshop);
-    this.registeredPosition = this.workshop.registered.indexOf(this.uid);
-    this.registered = true;
-    this.user.workshops.push(this.id);
-    this.userService.addUserRegistration(this.user);
-  }
+  // workshopRegister() {
+  //   this.workshop.registered.push(this.uid); 
+  //   this.workshop.availableSeats -= 1;
+  //   this.wss.updateWorkshop(this.workshop);
+  //   this.registeredPosition = this.workshop.registered.indexOf(this.uid);
+  //   this.registered = true;
+  //   this.user.workshops.push(this.id);
+  //   this.userService.addUserRegistration(this.user);
+  // }
 
-  deleteRegistration() {
-    this.workshop.registered.splice(this.registeredPosition, 1)
-    this.workshop.availableSeats += 1;
-    this.registeredPosition = null;
-    this.registered = false;
-    this.wss.updateWorkshop(this.workshop);
-    this.user.workshops.splice(this.user.workshops.indexOf(this.id), 1);
-    console.log(this.user.workshops);
+  // deleteRegistration() {
+  //   this.workshop.registered.splice(this.registeredPosition, 1)
+  //   this.workshop.availableSeats += 1;
+  //   this.registeredPosition = null;
+  //   this.registered = false;
+  //   this.wss.updateWorkshop(this.workshop);
+  //   this.user.workshops.splice(this.user.workshops.indexOf(this.id), 1);
+  //   console.log(this.user.workshops);
     
-    this.userService.removeUserRegistration(this.user);
-    console.log(this.workshop.registered, this.user.workshops);
-  }
+  //   this.userService.removeUserRegistration(this.user);
+  //   console.log(this.workshop.registered, this.user.workshops);
+  // }
 }

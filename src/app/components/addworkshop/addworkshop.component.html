@@ -17,11 +17,20 @@
       </div>
 
       <div class="form-group">
-        <label for="presenter">Presenter</label>
-        <select type="text" class="form-control" name="presenter" #workshopPresenter="ngModel" [(ngModel)]="workshop.presenter" required>
-          <option *ngFor="let presenter of presenters" [ngValue]="presenter">{{ presenter.name }}</option>
+        <label for="presenter1">Presenter</label>
+        <select type="text" class="form-control" name="presenter1" #workshopPresenter="ngModel" [(ngModel)]="workshop.presenter1" required>
+          <option *ngFor="let presenter of presenters" [ngValue]="presenter.id">{{ presenter.name }}</option>
         </select>
       </div>
+
+      <!-- <p><input type="checkbox" name="secondPresenter" value="true" [(ngModel)]="secondPresenter">Add Second Presenter?</p>
+
+      <div class="form-group" *ngIf="secondPresenter">
+        <label for="presenter2">Presenter</label>
+        <select type="text" class="form-control" name="presenter2" #workshopPresenter="ngModel" [(ngModel)]="workshop.presenter2">
+          <option *ngFor="let presenter of presenters" [ngValue]="presenter.id">{{ presenter.name }}</option>
+        </select>
+      </div> -->
 
       <!-- <div class="form-group">
         <label for="workshop.presenter">Presenter</label>
@@ -72,14 +81,47 @@
       </div>
 
       <div class="form-group">
-        <label for="totalSeats">Total Seats</label>
-        <input type="number" class="form-control" [(ngModel)]="workshop.totalSeats" name="totalSeats" #workshopTotalSeats="ngModel">
-      </div>
-
-      <div class="form-group">
         <label for="imageURL">Workshop Image</label>
         <input type="string" class="form-control" [(ngModel)]="workshop.imageURL" name="imageURL" #workshopImageURL="ngModel">
       </div>
+
+      <div>
+        <p>Sessions Available:</p>
+        <p>
+          <input type="checkbox" name="session1Check" value="true" [(ngModel)]="session1Check">Session 1?</p>
+        <p>
+          <input type="checkbox" name="session2Check" value="true" [(ngModel)]="session2Check">Session 2?</p>
+        <p>
+          <input type="checkbox" name="session3Check" value="true" [(ngModel)]="session3Check">Session 3?</p>
+      </div>
+      
+      <div *ngIf="session1Check">
+        <div class="form-group">
+          <label for="totalSeats">Session 1 Total Seats</label>
+          <input type="number" class="form-control" [(ngModel)]="workshop.session1.totalSeats" name="totalSeats">
+        </div>
+      </div>
+
+      <div *ngIf="session2Check">
+        <div class="form-group">
+          <label for="totalSeats">Session 2 Total Seats</label>
+          <input type="number" class="form-control" [(ngModel)]="workshop.session2.totalSeats" name="totalSeats" #totalSeats="ngModel">
+        </div>
+      </div>
+
+      <div *ngIf="session3Check">
+        <div class="form-group">
+          <label for="totalSeats">Session 3 Total Seats</label>
+          <input type="number" class="form-control" [(ngModel)]="workshop.session3.totalSeats" name="totalSeats" #totalSeats="ngModel">
+        </div>
+      </div>
+      
+      <!-- <div class="form-group">
+        <label for="totalSeats">Total Seats</label>
+        <input type="number" class="form-control" [(ngModel)]="workshop.totalSeats" name="totalSeats" #workshopTotalSeats="ngModel">
+      </div> -->
+
+      
 
       <input type="submit" value="Submit" class="btn btn-primary btn-block">
 

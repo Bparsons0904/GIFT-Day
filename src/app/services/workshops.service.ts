@@ -18,7 +18,7 @@ export class WorkshopsService {
     private afs: AngularFirestore
   ) {
     this.workshopsCollection = this.afs.collection('workshops',
-      ref => ref.orderBy('availableSeats', 'desc'));
+      ref => ref.orderBy('room', 'desc'));
    }
   
   getWorkshops(): Observable<Workshop[]> {

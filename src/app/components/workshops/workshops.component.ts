@@ -19,7 +19,7 @@ export class WorkshopsComponent implements OnInit {
 
   ngOnInit() {
     this.wss.getWorkshops().subscribe(workshops => {
-      this.workshops = workshops;
+      this.workshops = workshops; 
     });
     this.tab = true;
     // if (window.innerWidth < 992 && window.innerWidth > 577) { // 768px portrait

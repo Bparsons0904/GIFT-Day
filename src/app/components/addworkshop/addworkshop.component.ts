@@ -15,18 +15,36 @@ export class AddworkshopComponent implements OnInit {
 
   workshop: Workshop = {
     name: '',
-    presenter: {
-      id: '',
-      name: '',
-    },
+    imageURL: 'https://placeimg.com/300/240/tech',
+    presenter1: '',
+    presenter2: '',
     description: '',
     room: '',
-    totalSeats: 0,
-    availableSeats: 0,
-    imageURL: 'https://placeimg.com/300/240/tech'
+    session1: {
+      available: false,
+      totalSeats: 0,
+      availableSeats: 0,
+      registered: [],
+    },
+    session2: {
+      available: false,
+      totalSeats: 0,
+      availableSeats: 0,
+      registered: [],
+    },
+    session3: {
+      available: false,
+      totalSeats: 0,
+      availableSeats: 0,
+      registered: [],
+    }
   }
 
   presenters: Presenter[];
+  secondPresenter: false;
+  session1Check: false;
+  session2Check: false;
+  session3Check: false;
 
   @ViewChild('workshopForm') form: any;
 
@@ -49,8 +67,20 @@ export class AddworkshopComponent implements OnInit {
         cssClass: 'alert-danger', timeout: 4000
       });
     } else {
-      value.availableSeats = value.totalSeats;
-      this.wss.newWorkshop(value);
+      if(this.session1Check) {
+        this.workshop.session1.available = this.session1Check;
+        
+        this.workshop.session1.availableSeats = this.workshop.session1.totalSeats;
+      };
+      if(this.session2Check) {
+        this.workshop.session2.available = this.session2Check;
+        this.workshop.session2.availableSeats = this.workshop.session2.totalSeats;
+      };
+      if(this.session3Check) {
+        this.workshop.session3.available = this.session3Check;
+        this.workshop.session3.availableSeats = this.workshop.session3.totalSeats;
+      }
+      this.wss.newWorkshop(this.workshop);
       this.flashMessage.show('New workshop added', {
         cssClass: 'alert-success', timeout: 4000
       });

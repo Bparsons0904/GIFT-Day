@@ -46,18 +46,18 @@ export class UserProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.wss.getWorkshops().subscribe(workshops => {
-      this.workshops = workshops;
-      this.auth.user.subscribe(user => {
-        this.uid = user.uid;
-        this.userService.getUser(this.uid).subscribe(user => {
-          this.user = user;
-        });
-
-
-    });
+  //   this.wss.getWorkshops().subscribe(workshops => {
+  //     this.workshops = workshops;
+  //     this.auth.user.subscribe(user => {
+  //       this.uid = user.uid;
+  //       this.userService.getUser(this.uid).subscribe(user => {
+  //         this.user = user;
+          
+  //       });
+  //     });
     
-  }
+  // });
+}
 
   onSubmit({ value, valid }: { value: User, valid: boolean }) {
     if (!valid) {
