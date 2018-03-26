@@ -3,10 +3,16 @@
     <a routerLink="/workshops" class="btn btn-sm btn-outline-info">
       <i class="fa fa-backward"></i> All Workshops
     </a>
-    <h1>{{ workshop?.name }}</h1>
-    <p routerLink="/presenters/{{ workshop?.presenter?.id }}">{{ workshop?.presenter.name }}</p>
-    <p>{{ workshop?.totalSeats }}</p>
-    <p>{{ workshop?.availableSeats }}</p>
+    <h1>{{ workshop.name }}</h1>
+    <p *ngIf="presenter1" routerLink="/presenters/{{ presenter1.id }}">{{ presenter1.name }}</p>
+    <p *ngIf="presenter2" routerLink="/presenters/{{ presenter2.id }}">{{ presenter2.name }}</p>
+    <p *ngIf="workshop.session1.available">Session 1 Available Spots: {{ workshop?.session1.totalSeats - workshop.session1.registered.length }}</p>
+    <p *ngIf="!workshop.session1.available">Session 1 Unavailable</p>
+    
+    <p *ngIf="workshop.session2.available">Session 2 Available Spots: {{ workshop?.session2.totalSeats  - workshop.session2.registered.length}}</p>
+    <p *ngIf="!workshop.session2.available">Session 2 Unavailable</p>
+    <p *ngIf="workshop.session3.available">Session 3 Available Spots: {{ workshop?.session3.totalSeats - workshop.session3.registered.length}}</p>
+    <p *ngIf="!workshop.session3.available">Session 3 Unavailable</p>
   </div>
   <div class="col-md-6 workshop-image">
     <img class="img-fluid" src="{{ workshop?.imageURL }}" alt="{{ workshop.name + 'image' }}">
@@ -21,8 +27,13 @@
       <i class="fa fa-backward"></i> All Workshops
     </a>
   </div>
-  <button class="btn btn-primary" (click)="workshopRegister()" [disabled]="registered" >Register for Workshop</button>
-  <button class="btn btn-primary" (click)="deleteRegistration()" [disabled]="!registered">Remove Registration</button>
+  <div>
+    <button class="btn btn-primary" (click)="workshopRegister('1')" [disabled]="registered">Register for Session 1</button>
+    <button class="btn btn-primary" (click)="workshopRegister('2')" [disabled]="registered">Register for Session 2</button>
+    <button class="btn btn-primary" (click)="workshopRegister('3')" [disabled]="registered">Register for Session 3</button>
+    <button class="btn btn-primary" (click)="deleteRegistration()" [disabled]="!registered">Remove Registration</button>
+  </div>
+  
 </div>
   
 <!-- <div *ngIf="workshop">
@@ -36,3 +47,4 @@
 
 
 
+    

@@ -16,15 +16,26 @@ export class EditworkshopComponent implements OnInit {
   id: string;
   workshop: Workshop = {
     name: '',
-    presenter: {
-      id: '',
-      name: '',
-    },
+    imageURL: 'https://placeimg.com/300/240/tech',
+    presenter1: '',
+    presenter2: '',
     description: '',
     room: '',
-    totalSeats: 0,
-    availableSeats: 0,
-    imageURL: ''
+    session1: {
+      available: false,
+      totalSeats: 0,
+      registered: [],
+    },
+    session2: {
+      available: false,
+      totalSeats: 0,
+      registered: [],
+    },
+    session3: {
+      available: false,
+      totalSeats: 0,
+      registered: [],
+    }
   }
 
   presenters: Presenter[];
@@ -54,7 +65,7 @@ export class EditworkshopComponent implements OnInit {
       });
     } else {
       value.id = this.id;
-      this.wss.updateWorkshop(value);
+      this.wss.updateWorkshop(this.workshop);
       this.flashMessage.show('Workshop Updated.', {
         cssClass: 'alert-success', timeout: 4000
       });

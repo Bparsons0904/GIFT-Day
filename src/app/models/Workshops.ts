@@ -9,19 +9,19 @@ export interface Workshop {
     session1?: {
         available?: boolean;
         totalSeats?: number;
-        availableSeats?: number;
+        // availableSeats?: number;
         registered?: any[];
     }
     session2?: {
         available?: boolean;
         totalSeats?: number;
-        availableSeats?: number;
+        // availableSeats?: number;
         registered?: any[];
     }
     session3?: {
         available?: boolean;
         totalSeats?: number;
-        availableSeats?: number;
+        // availableSeats?: number;
         registered?: any[];
     }
     

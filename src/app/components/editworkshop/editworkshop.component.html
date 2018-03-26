@@ -29,11 +29,28 @@
         </div>
       </div> -->
 
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label for="presenter">Presenter</label>
         <select type="text" class="form-control" name="presenter" #workshopPresenter="ngModel" 
           [(ngModel)]="workshop.presenter" required>
         <option *ngFor="let presenter of presenters" [ngValue]="presenter">{{ presenter.name }}</option>
+        </select>
+      </div> -->
+
+      <div class="form-group">
+        <label for="presenter1">Primary Presenter</label>
+        <a routerLink="/presenters/add">Add Presenter</a>
+        <select type="text" class="form-control" name="presenter1" #workshopPresenter="ngModel" [(ngModel)]="workshop.presenter1"
+          required>
+          <option *ngFor="let presenter of presenters" [ngValue]="presenter.id">{{ presenter.name }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="presenter2">Assistant Presenter</label>
+        <a routerLink="/presenters/add">Add Presenter</a>
+        <select type="text" class="form-control" name="presenter2" #workshopPresenter="ngModel" [(ngModel)]="workshop.presenter2">
+          <option *ngFor="let presenter of presenters" [ngValue]="presenter.id">{{ presenter.name }}</option>
         </select>
       </div>
 
@@ -74,13 +91,44 @@
       </div>
 
       <div class="form-group">
-        <label for="totalSeats">Total Seats</label>
-        <input type="number" class="form-control" [(ngModel)]="workshop.totalSeats" name="totalSeats" #workshopTotalSeats="ngModel">
-      </div>
-
-      <div class="form-group">
         <label for="imageURL">Workshop Image</label>
         <input type="string" class="form-control" [(ngModel)]="workshop.imageURL" name="imageURL" #workshopimageURL="ngModel">
+      </div>
+
+      <!-- <div class="form-group">
+        <label for="totalSeats">Total Seats</label>
+        <input type="number" class="form-control" [(ngModel)]="workshop.totalSeats" name="totalSeats" #workshopTotalSeats="ngModel">
+      </div> -->
+
+      <div>
+        <div class="form-group">
+          <div class="row registered">
+            <label for="totalSeats1">Session 1 Total Seats</label>
+            <p class="ml-auto">Registered Students: {{ workshop.session1.registered.length }}</p>
+          </div>
+          
+          <input type="number" class="form-control" [(ngModel)]="workshop.session1.totalSeats" name="totalSeats1">
+        </div>
+      </div>
+      
+      <div>
+        <div class="form-group">
+          <div class="row registered">
+            <label for="totalSeats2">Session 2 Total Seats</label>
+            <p class="ml-auto">Registered Students: {{ workshop.session2.registered.length }}</p>
+          </div>
+          <input type="number" class="form-control" [(ngModel)]="workshop.session2.totalSeats" name="totalSeats2">
+        </div>
+      </div>
+      
+      <div>
+        <div class="form-group">
+          <div class="row registered">
+            <label for="totalSeats3">Session 3 Total Seats</label>
+            <p class="ml-auto">Registered Students: {{ workshop.session3.registered.length }}</p>
+          </div>
+          <input type="number" class="form-control" [(ngModel)]="workshop.session3.totalSeats" name="totalSeats3">
+        </div>
       </div>
 
       <input type="submit" value="Submit Edit" class="btn btn-primary btn-block">
@@ -89,13 +137,8 @@
   </div>
 </div>
 
-<div class="row">
-  <p *ngFor="let presenter of presenters">{{ presenter.name }}</p>
 
-</div>
-
-
-<div class="row">
+<!-- <div class="row">
   <div class="preview text-center">
     <h2>Edit Preview</h2>
   </div>
@@ -119,4 +162,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

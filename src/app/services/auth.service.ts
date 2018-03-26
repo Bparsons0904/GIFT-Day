@@ -175,12 +175,14 @@ export class AuthService {
         uid: user.uid,
         email: user.email || null,
         displayName: user.displayName,
+        workshops: [],
       };
       return userRef.set(data, { merge: true });
     } else {
       const data: User = {
         uid: user.uid,
         email: user.email || null,
+        workshops: [],
       };
       return userRef.set(data, { merge: true });
     } 
