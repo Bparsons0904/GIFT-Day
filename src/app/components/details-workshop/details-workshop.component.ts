@@ -5,7 +5,6 @@ import { Workshop } from '../../models/Workshops';
 import { UserService } from '../../services/user.service';
 import { AuthService } from '../../services/auth.service';   
 import { User } from '../../models/User';
-// import { UserRegistration } from '../../models/UserRegistration';
 import { Observable } from '@firebase/util';
 import { Presenter } from '../../models/Presenter';
 import { PresenterService } from '../../services/presenter.service';
@@ -25,7 +24,6 @@ export class DetailsWorkshopComponent implements OnInit {
   registered2: boolean;
   registered3: boolean;
   registeredSession: string;
-  // registeredPosition: number;
   userRegisteredPosition: number;
   user: User;
   presenter1: Presenter;
@@ -99,7 +97,10 @@ export class DetailsWorkshopComponent implements OnInit {
       });
 
       this.presenterService.getPresenter(this.workshop.presenter1).subscribe(presenter => this.presenter1 = presenter);
-      this.presenterService.getPresenter(this.workshop.presenter2).subscribe(presenter => this.presenter2 = presenter);
+      if(this.workshop.presenter2) {
+        this.presenterService.getPresenter(this.workshop.presenter2).subscribe(presenter => this.presenter2 = presenter);
+      }
+      
     
       
       

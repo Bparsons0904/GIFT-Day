@@ -65,6 +65,17 @@ export class EditworkshopComponent implements OnInit {
       });
     } else {
       value.id = this.id;
+      for (let i = 1; i < 4; i++) {
+        console.log("session" + i);
+        
+        console.log(this.workshop["session" + i].totalSeats);
+        
+        if (this.workshop["session" + i].totalSeats > 0) {
+          this.workshop["session" + i].available = true;
+        } else {
+          this.workshop["session" + i].available = false;
+        }
+      }
       this.wss.updateWorkshop(this.workshop);
       this.flashMessage.show('Workshop Updated.', {
         cssClass: 'alert-success', timeout: 4000
