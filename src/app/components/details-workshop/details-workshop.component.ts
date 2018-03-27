@@ -5,10 +5,10 @@ import { Workshop } from '../../models/Workshops';
 import { UserService } from '../../services/user.service';
 import { AuthService } from '../../services/auth.service';   
 import { User } from '../../models/User';
+// import { UserRegistration } from '../../models/UserRegistration';
 import { Observable } from '@firebase/util';
 import { Presenter } from '../../models/Presenter';
 import { PresenterService } from '../../services/presenter.service';
-import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-details-workshop',
@@ -31,6 +31,8 @@ export class DetailsWorkshopComponent implements OnInit {
   presenter1: Presenter;
   presenter2: Presenter;
 
+
+
   constructor(
     private wss: WorkshopsService,
     private router: Router,
@@ -51,8 +53,17 @@ export class DetailsWorkshopComponent implements OnInit {
         this.uid = user.uid;
         this.userService.getUser(this.uid).subscribe(user => {
           this.user = user;
+          for (let i = 0; i < this.user.workshops.length; i++) {
+            const element = this.user.workshops[i];
+            if(element != null) {
+              this["registered" + (i + 1)] = true;
+              console.log("Session" + i + " True");
+              console.log(this.registered1, this.registered2, this.registered3);
+              
+            }
+          }
         });
-        if (this.workshop.session1.registered.indexOf   (this.uid) > -1) {
+        if (this.workshop.session1.registered.indexOf(this.uid) > -1) {
           this.registered1 = true;
           this.registered = true;
           this.registeredSession = '1';
@@ -63,7 +74,7 @@ export class DetailsWorkshopComponent implements OnInit {
           this.registered1 = false;
         };
 
-        if (this.workshop.session2.registered.indexOf   (this.uid) > -1) {
+        if (this.workshop.session2.registered.indexOf(this.uid) > -1) {
           this.registered2 = true;
           this.registered = true;
           this.registeredSession = '2';
@@ -72,7 +83,7 @@ export class DetailsWorkshopComponent implements OnInit {
         } else {
           this.registered2 = false;
         };
-        if (this.workshop.session3.registered.indexOf   (this.uid) > -1) {
+        if (this.workshop.session3.registered.indexOf(this.uid) > -1) {
           this.registered3 = true;
           this.registered = true;
           this.registeredSession = '3';
@@ -131,7 +142,10 @@ export class DetailsWorkshopComponent implements OnInit {
     this['registered' + sessionNumber] = true;
     this.registeredSession = sessionNumber;
     this.registered = true;
-    this.user.workshops.push(this.id);
+    this["registered" + (sessionNumber + 1)] = true;
+    this.user.workshops.splice((Number(sessionNumber)-1), 1, this.id);
+    // this.user.workshops.push([this.id, (Number(sessionNumber))]);
+    
     this.userService.addUserRegistration(this.user);
   }
 
@@ -142,7 +156,7 @@ export class DetailsWorkshopComponent implements OnInit {
     this.registeredSession = null;
     this.registered1 = false;
     this.wss.updateWorkshop(this.workshop);
-    this.user.workshops.splice(this.user.workshops.indexOf(this.id), 1);
+    this.user.workshops.splice(this.user.workshops.indexOf(this.id), 1, null);
     console.log(this.registered);
     
     this.userService.removeUserRegistration(this.user);
