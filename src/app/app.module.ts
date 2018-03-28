@@ -45,6 +45,9 @@ import { DetailsWorkshopComponent } from './components/details-workshop/details-
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { DropzoneDirective } from './directives/dropzone.directive';
 
+// Material Angular
+import { MatButtonModule, MatCheckboxModule, MatCardModule } from '@angular/material';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -84,6 +87,9 @@ import { DropzoneDirective } from './directives/dropzone.directive';
     FormsModule,
     ReactiveFormsModule,
     AngularFireStorageModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatCardModule
   ],
   providers: [ClientService, AuthService, SettingsService, NotifyService, UserService, WorkshopsService, PresenterService],
   bootstrap: [AppComponent]
