@@ -60,10 +60,10 @@ export class UserProfileComponent implements OnInit {
             this.wss.getWorkshop(user.workshops[i]).subscribe(workshop => {
               this["workshop" + String(i+1)] = workshop;
             });
-            
-            
-          };
-        }
+          } else {
+            this["workshop" + String(i + 1)] = undefined;
+          }
+        };
       });
     });
   //   this.wss.getWorkshops().subscribe(workshops => {
@@ -97,14 +97,13 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
-  deleteRegistration(registeredSession) {
-    console.log(this.workshop1);
-    
+  deleteRegistration(registeredSession, id) {
     this['workshop' + registeredSession]['session' + registeredSession].registered.splice(this['workshop' + registeredSession]['session' + registeredSession].registered.indexOf(this.uid), 1)
     // this.workshop['session' + this.registeredSession].availableSeats += 1;
     this.wss.updateWorkshop(this["workshop" + registeredSession]);
-    this.user.workshops.splice(this.user.workshops.indexOf(this.id), 1, null);
+    this.user.workshops.splice(this.user.workshops.indexOf(id), 1, null);
     this.userService.removeUserRegistration(this.user);
+    this['workshop' + registeredSession] = undefined;
     // console.log(this.workshop['session' + this.registeredSession].registered, this.user.workshops, this.registered);
   }
 

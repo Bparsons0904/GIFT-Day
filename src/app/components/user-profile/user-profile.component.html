@@ -83,13 +83,13 @@
     <div>
       <p *ngIf="workshop1" routerLink="/workshops/{{ workshop1.id }}">Session 1: {{ workshop1.name }} in Room {{ workshop1.room }}</p>
       <p *ngIf="!workshop1" routerLink="/workshops">Register for Session 1</p>
-      <button *ngIf="workshop1" class="btn btn-primary" (click)="deleteRegistration('1')">Remove Registration</button>
+      <button *ngIf="workshop1" class="btn btn-primary" (click)="deleteRegistration('1', workshop1.id)">Remove Registration</button>
       <p *ngIf="workshop2" routerLink="/workshops/{{ workshop2.id }}">Session 2: {{ workshop2.name }} in Room {{ workshop2.room }}</p>
       <p *ngIf="!workshop2" routerLink="/workshops">Register for Session 2</p>
-      <button *ngIf="workshop2" class="btn btn-primary" (click)="deleteRegistration('2')">Remove Registration</button>
+      <button *ngIf="workshop2" class="btn btn-primary" (click)="deleteRegistration('2', workshop2.id)">Remove Registration</button>
       <p *ngIf="workshop3" routerLink="/workshops/{{ workshop3.id }}">Session 3: {{ workshop3.name }} in Room {{ workshop3.room }}</p>
       <p *ngIf="!workshop3" routerLink="/workshops">Register for Session 3</p>
-      <button *ngIf="workshop3" class="btn btn-primary" (click)="deleteRegistration('3')">Remove Registration</button>
+      <button *ngIf="workshop3" class="btn btn-primary" (click)="deleteRegistration('3', workshop3.id)">Remove Registration</button>
     </div>
   </div>
   
