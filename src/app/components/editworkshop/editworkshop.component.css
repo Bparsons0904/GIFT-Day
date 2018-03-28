@@ -6,3 +6,10 @@
     padding-left: 1em;
     padding-right: 1em;
 }
+progress::-webkit-progress-value {
+    transition: width 0.1s ease;
+}
+.progress {
+    width: 100%;
+}
+

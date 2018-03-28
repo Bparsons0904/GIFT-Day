@@ -41,6 +41,9 @@ import { EditPresenterComponent } from './components/edit-presenter/edit-present
 import { DetailsPresenterComponent } from './components/details-presenter/details-presenter.component';
 import { DetailsWorkshopComponent } from './components/details-workshop/details-workshop.component';
 
+// File Upload
+import { AngularFireStorageModule } from 'angularfire2/storage';
+import { DropzoneDirective } from './directives/dropzone.directive';
 
 @NgModule({
   declarations: [
@@ -67,7 +70,8 @@ import { DetailsWorkshopComponent } from './components/details-workshop/details-
     AddPresenterComponent,
     EditPresenterComponent,
     DetailsPresenterComponent,
-    DetailsWorkshopComponent
+    DetailsWorkshopComponent,
+    DropzoneDirective
 
   ],
   imports: [
@@ -78,7 +82,8 @@ import { DetailsWorkshopComponent } from './components/details-workshop/details-
     AngularFirestoreModule,
     AngularFireAuthModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireStorageModule,
   ],
   providers: [ClientService, AuthService, SettingsService, NotifyService, UserService, WorkshopsService, PresenterService],
   bootstrap: [AppComponent]

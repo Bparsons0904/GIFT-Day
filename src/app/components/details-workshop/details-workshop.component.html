@@ -32,6 +32,7 @@
     <button class="btn btn-primary" (click)="workshopRegister('2')" [disabled]="registered || registered2">Register for Session 2</button>
     <button class="btn btn-primary" (click)="workshopRegister('3')" [disabled]="registered || registered3">Register for Session 3</button>
     <button class="btn btn-primary" (click)="deleteRegistration()" [disabled]="!registered">Remove Registration</button>
+    <p *ngIf="registered1 && registered2 && registered3" routerLink="/profile">You are currently registered for all 3 sessions.  To see your registrations visit your profile.</p>
   </div>
 </div>
   

@@ -32,6 +32,11 @@ export class UserProfileComponent implements OnInit {
   test: Observable<User>;
   uid: string;
 
+  workshop1: Workshop;
+  workshop2: Workshop;
+  workshop3: Workshop;
+
+  workshop: Workshop;
   
   constructor(
     public auth: AuthService,
@@ -46,6 +51,21 @@ export class UserProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.auth.user.subscribe(user => {
+      this.uid = user.uid;
+      this.userService.getUser(this.uid).subscribe(user => {
+        this.user = user;
+        for (let i = 0; i < 3; i++) {
+          if(user.workshops[i] != null) {
+            this.wss.getWorkshop(user.workshops[i]).subscribe(workshop => {
+              this["workshop" + String(i+1)] = workshop;
+            });
+            
+            
+          };
+        }
+      });
+    });
   //   this.wss.getWorkshops().subscribe(workshops => {
   //     this.workshops = workshops;
   //     this.auth.user.subscribe(user => {
@@ -75,6 +95,17 @@ export class UserProfileComponent implements OnInit {
       });
       this.router.navigate(['/'])
     }
+  }
+
+  deleteRegistration(registeredSession) {
+    console.log(this.workshop1);
+    
+    this['workshop' + registeredSession]['session' + registeredSession].registered.splice(this['workshop' + registeredSession]['session' + registeredSession].registered.indexOf(this.uid), 1)
+    // this.workshop['session' + this.registeredSession].availableSeats += 1;
+    this.wss.updateWorkshop(this["workshop" + registeredSession]);
+    this.user.workshops.splice(this.user.workshops.indexOf(this.id), 1, null);
+    this.userService.removeUserRegistration(this.user);
+    // console.log(this.workshop['session' + this.registeredSession].registered, this.user.workshops, this.registered);
   }
 
   idcheck() {

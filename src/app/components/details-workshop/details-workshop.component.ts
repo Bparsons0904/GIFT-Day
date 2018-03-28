@@ -55,9 +55,6 @@ export class DetailsWorkshopComponent implements OnInit {
             const element = this.user.workshops[i];
             if(element != null) {
               this["registered" + (i + 1)] = true;
-              console.log("Session" + i + " True");
-              console.log(this.registered1, this.registered2, this.registered3);
-              
             }
           }
         });
@@ -158,7 +155,6 @@ export class DetailsWorkshopComponent implements OnInit {
     this.registered1 = false;
     this.wss.updateWorkshop(this.workshop);
     this.user.workshops.splice(this.user.workshops.indexOf(this.id), 1, null);
-    console.log(this.registered);
     
     this.userService.removeUserRegistration(this.user);
     // console.log(this.workshop['session' + this.registeredSession].registered, this.user.workshops, this.registered);

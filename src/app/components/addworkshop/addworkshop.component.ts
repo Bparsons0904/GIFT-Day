@@ -5,6 +5,11 @@ import { WorkshopsService } from '../../services/workshops.service';
 import { Workshop } from '../../models/Workshops';
 import { PresenterService } from '../../services/presenter.service';
 import { Presenter } from '../../models/presenter';
+import { AngularFireStorage, AngularFireUploadTask } from 'angularfire2/storage';
+import { Observable } from 'rxjs/Observable';
+
+import { AngularFirestore } from 'angularfire2/firestore';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-addworkshop',
@@ -41,10 +46,13 @@ export class AddworkshopComponent implements OnInit {
   }
 
   presenters: Presenter[];
-  // secondPresenter: false;
-  // session1Check: false;
-  // session2Check: false;
-  // session3Check: false;
+
+  task: AngularFireUploadTask;
+  percentage: Observable<number>;
+  snapshot: Observable<any>;
+  downloadURL: Observable<string>;
+  isHovering: boolean;
+  imageURL: string;
 
   @ViewChild('workshopForm') form: any;
 
@@ -53,6 +61,7 @@ export class AddworkshopComponent implements OnInit {
     private wss: WorkshopsService,
     private router: Router,
     private presenterService: PresenterService,
+    private storage: AngularFireStorage,
   ) { }
 
   ngOnInit() {
@@ -85,5 +94,68 @@ export class AddworkshopComponent implements OnInit {
       });
       this.router.navigate(['/workshops']);
     }
+  }
+
+  toggleHover(event: boolean) {
+    this.isHovering = event;
+  }
+
+
+  startUpload(event: FileList) {
+    // The File object
+    const file = event.item(0)
+
+    // Client-side validation example
+    if (file.type.split('/')[0] !== 'image') {
+      console.error('unsupported file type :( ')
+      return;
+    }
+
+    // The storage path
+    const path = `media/images/workshops/${new Date().getTime()}_${file.name}`;
+
+    // Totally optional metadata
+    const customMetadata = { app: 'GIFT Day App' };
+
+    // The main task
+    this.task = this.storage.upload(path, file, { customMetadata })
+
+    // Progress monitoring
+    this.percentage = this.task.percentageChanges();
+    this.snapshot = this.task.snapshotChanges()
+
+    // this.percentage = this.task.percentageChanges();
+    // this.snapshot   = this.task.snapshotChanges().pipe(
+    //   tap(snap => {
+    //     console.log(snap)
+    //     if (snap.bytesTransferred === snap.totalBytes) {
+    //       this.db.collection('photos').add( { path, size: snap.totalBytes })
+    //     }
+    //   })
+    // )
+
+    // The file's download URL
+    this.downloadURL = this.task.downloadURL();
+
+    this.downloadURL.subscribe(imageURL => {
+      // Path for production
+      // this.imageURL = path;
+
+      // Path for testing
+      this.imageURL = imageURL;
+      this.workshop.imageURL = this.imageURL;
+      // console.log(this.imageURL);
+
+    });
+    // console.log(this.downloadURL);
+
+    // this.workshop.imageURL = String(this.downloadURL);
+  }
+
+
+
+  // Determines if the upload task is active
+  isActive(snapshot) {
+    return snapshot.state === 'running' && snapshot.bytesTransferred < snapshot.totalBytes
   }
 }

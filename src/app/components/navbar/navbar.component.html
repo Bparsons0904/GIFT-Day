@@ -1,37 +1,37 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-primary mb-4">
 <div class="container">
-  <a routerLink="/" class="navbar-brand">GIFT Day</a>
+  <a routerLink="/" class="navbar-brand" data-toggle="collapse" data-target="#navbarMain">GIFT Day</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMain">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarMain">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a routerLink="/" class="nav-link">Dashboard</a>
+      <li class="nav-item" routerLink="/">
+        <a data-toggle="collapse" data-target="#navbarMain" class="nav-link">Dashboard</a>
       </li>
-      <li class="nav-item">
-        <a routerLink="/profile" class="nav-link">Profile</a>
+      <li class="nav-item" routerLink="/profile">
+        <a data-toggle="collapse" data-target="#navbarMain"class="nav-link">Profile</a>
       </li>
-      <li class="nav-item">
-        <a routerLink="/login" class="nav-link">Login</a>
+      <li class="nav-item" routerLink="/login" >
+        <a data-toggle="collapse" data-target="#navbarMain"class="nav-link">Login</a>
       </li>
     </ul>
 
     <ul class="navbar-nav ml-auto">
-      <li *ngIf="!isLoggedIn && showRegister" class="nav-item">
-        <a routerLink="/register" class="nav-link">Register</a>
+      <li *ngIf="!isLoggedIn && showRegister" routerLink="/register" class="nav-item">
+        <a data-toggle="collapse" data-target="#navbarMain"class="nav-link">Register</a>
       </li>
-      <li *ngIf="!isLoggedIn && showRegister" class="nav-item">
-        <a routerLink="/login" class="nav-link">Login</a>
+      <li *ngIf="!isLoggedIn && showRegister" routerLink="/login"  class="nav-item">
+        <a data-toggle="collapse" data-target="#navbarMain"class="nav-link">Login</a>
       </li>
-      <li *ngIf="isLoggedIn" class="nav-item">
-        <a href="#" class="nav-link">{{ loggedInUser }}</a>
+      <li *ngIf="isLoggedIn"class="nav-item">
+        <a href="#" class="nav-link" data-toggle="collapse" data-target="#navbarMain">{{ loggedInUser }}</a>
       </li>
-      <li *ngIf="isLoggedIn" class="nav-item">
-        <a routerLink="/settings" class="nav-link">Settings</a>
+      <li *ngIf="isLoggedIn" routerLink="/settings"class="nav-item">
+        <a data-toggle="collapse" data-target="#navbarMain" class="nav-link">Settings</a>
       </li>
-      <li *ngIf="isLoggedIn" class="nav-item">
-        <a href="#" (click)="onLogoutClick()" class="nav-link">Logout</a>
+      <li *ngIf="isLoggedIn" class="nav-item" (click)="onLogoutClick()">
+        <a data-toggle="collapse" data-target="#navbarMain" href="#"  class="nav-link">Logout</a>
       </li>
     </ul>
   </div>

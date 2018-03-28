@@ -65,8 +65,6 @@ export class UserService {
 
     removeUserRegistration(user: User) {
         this.userDoc = this.afs.doc(`users/${user.uid}`);
-        console.log(user);
-        
         this.userDoc.update(user);        
     }
 
