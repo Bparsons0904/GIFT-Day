@@ -1,6 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
+* { 
+--main-orange: #FFC107;
+--main-blue: #07C1FF;
+--accent-green: #07FFC1;
+--accent-blue:  #0745FF;
+--accent-red:  #FF4507;
+}
+
+
 .alert p {
     margin: 0;
     padding: 0;

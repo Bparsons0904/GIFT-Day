@@ -1,4 +1,13 @@
 .navbar-brand {
     font-family: 'Lora', serif;
     font-size: 1.5em;
+    color: white;
+}
+
+.navbar {
+    background-color: var(--main-blue)
+}
+
+.nav-item a {
+    color: black;
 }
