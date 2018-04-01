@@ -47,6 +47,10 @@ import { DropzoneDirective } from './directives/dropzone.directive';
 
 // Material Angular
 import { MatButtonModule, MatCheckboxModule, MatCardModule } from '@angular/material';
+import { MatIconRegistry, MatIconModule, MatChipsModule } from '@angular/material';
+import { DomSanitizer } from '@angular/platform-browser';
+import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -89,7 +93,11 @@ import { MatButtonModule, MatCheckboxModule, MatCardModule } from '@angular/mate
     AngularFireStorageModule,
     MatButtonModule,
     MatCheckboxModule,
-    MatCardModule
+    MatIconModule,
+    MatCardModule,
+    HttpModule,
+    HttpClientModule,
+    MatChipsModule,
   ],
   providers: [ClientService, AuthService, SettingsService, NotifyService, UserService, WorkshopsService, PresenterService],
   bootstrap: [AppComponent]

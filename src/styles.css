@@ -3,12 +3,14 @@
 
 * { 
 --main-orange: #FFC107;
---main-blue: #07C1FF;
+--main-blue: #40C4FF;
+--offset-blue: #07C1FF;
 --accent-green: #07FFC1;
 --accent-blue:  #0745FF;
 --accent-red:  #FF4507;
+--accent-purple: #C107FF;
+--accent-yellow: #C1FF07;
 }
-
 
 .alert p {
     margin: 0;

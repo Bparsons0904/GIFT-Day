@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light mb-4">
+<nav class="navbar navbar-expand-md navbar-dark mb-4">
 <div class="container">
   <a routerLink="/" class="navbar-brand">GIFT Day</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMain">
@@ -24,11 +24,11 @@
       <li *ngIf="!isLoggedIn && showRegister" routerLink="/login"  class="nav-item">
         <a data-toggle="collapse" data-target="#navbarMain"class="nav-link">Login</a>
       </li>
-      <li *ngIf="isLoggedIn"class="nav-item">
+      <!-- <li *ngIf="isLoggedIn"class="nav-item">
         <a href="#" class="nav-link" data-toggle="collapse" data-target="#navbarMain">{{ loggedInUser }}</a>
-      </li>
-      <li *ngIf="isLoggedIn" routerLink="/settings"class="nav-item">
-        <a data-toggle="collapse" data-target="#navbarMain" class="nav-link">Settings</a>
+      </li> -->
+      <li *ngIf="isLoggedIn" routerLink="/profile"class="nav-item">
+        <a data-toggle="collapse" data-target="#navbarMain" class="nav-link">Profile</a>
       </li>
       <li *ngIf="isLoggedIn" class="nav-item" (click)="onLogoutClick()">
         <a data-toggle="collapse" data-target="#navbarMain" href="#"  class="nav-link">Logout</a>
