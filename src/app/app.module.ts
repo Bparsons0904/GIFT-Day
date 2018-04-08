@@ -51,6 +51,13 @@ import { MatIconRegistry, MatIconModule, MatChipsModule } from '@angular/materia
 import { DomSanitizer } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatFormFieldModule } from '@angular/material';
+import { MatInputModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MqIfDirective } from './directives/mq-if.directive';
+// import { ResponsiveModule } from 'ngx-responsive'
 
 @NgModule({
   declarations: [
@@ -78,7 +85,8 @@ import { HttpClientModule } from '@angular/common/http';
     EditPresenterComponent,
     DetailsPresenterComponent,
     DetailsWorkshopComponent,
-    DropzoneDirective
+    DropzoneDirective,
+    MqIfDirective
 
   ],
   imports: [
@@ -98,6 +106,10 @@ import { HttpClientModule } from '@angular/common/http';
     HttpModule,
     HttpClientModule,
     MatChipsModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatInputModule,
+    BrowserAnimationsModule
   ],
   providers: [ClientService, AuthService, SettingsService, NotifyService, UserService, WorkshopsService, PresenterService],
   bootstrap: [AppComponent]

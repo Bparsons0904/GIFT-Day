@@ -4,13 +4,28 @@
 * { 
 --main-orange: #FFC107;
 --main-blue: #40C4FF;
+--main-grey: #FAFAFA;
+--orange-dark: #FFAB00;
 --offset-blue: #07C1FF;
---accent-green: #07FFC1;
+--accent-green: #69ff64;
 --accent-blue:  #0745FF;
---accent-red:  #FF4507;
+--accent-red:  #ff470b;
 --accent-purple: #C107FF;
---accent-yellow: #C1FF07;
+--accent-yellow: #e3ff07;
 }
+
+/* #69ff64 green
+#e3ff07 yellow
+#ff470b red */
+
+    /* --main-orange: #FFC107;
+    --main-blue: #40C4FF;
+    --offset-blue: #07C1FF;
+    --accent-green: #5ee15a;
+    --accent-blue: #0745FF;
+    --accent-red: #ea5727db;
+    --accent-purple: #C107FF;
+    --accent-yellow: #e0f820; */
 
 .alert p {
     margin: 0;

@@ -32,7 +32,7 @@ export class WorkshopsComponent implements OnInit {
     this.wss.getWorkshops().subscribe(workshops => {
       this.workshops = workshops;
     });
-    this.tab = true;
+    // this.tab = true;
     // if (window.innerWidth < 992 && window.innerWidth > 577) { // 768px portrait
     //   this.tab = true;
     // } else {

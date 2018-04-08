@@ -11,11 +11,11 @@
 }
 
 .card-body {
-    background-color: var(--offset-blue);
+    background-color: var(--main-grey);
 }
 
 .card-body p {
-    color: white;
+    /* color: white; */
     font-size: 1.15em;
 }
 
