@@ -41,7 +41,7 @@ export class WorkshopsComponent implements OnInit {
 
     // Remove for production
     // this.admin = this.userservice.admin;
-    this.admin = false;
+    this.admin = true;
   }
 
   // getSessionClasses(id, session) {

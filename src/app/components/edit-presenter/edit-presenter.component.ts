@@ -6,7 +6,14 @@ import { Presenter } from '../../models/presenter';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireStorage, AngularFireUploadTask } from 'angularfire2/storage';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { tap } from 'rxjs/operators';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { Inject } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+// import { DialogConfirmComponent } from '../dialog-confirm/dialog-confirm.component';
+
+
 
 @Component({
   selector: 'app-edit-presenter',
@@ -33,12 +40,17 @@ export class EditPresenterComponent implements OnInit {
   isHovering: boolean;
   imageURL: string;
 
+  name: string;
+
+  // dialogRef: MatDialogRef<DialogConfirmComponent>;
+
   constructor(
     private presenterService: PresenterService,
     private router: Router,
     private route: ActivatedRoute,
     private flashMessage: FlashMessagesService,
     private storage: AngularFireStorage,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -53,8 +65,6 @@ export class EditPresenterComponent implements OnInit {
       });
     } else {
       value.id = this.id;
-      console.log(value);
-      
       this.presenterService.updatePresenter(value);
       this.flashMessage.show('Presenter Updated.', {
         cssClass: 'alert-success', timeout: 4000
@@ -64,14 +74,37 @@ export class EditPresenterComponent implements OnInit {
     }
   }
 
+  openDialog(): void {
+    let dialogRef = this.dialog.open(DialogConfirmComponent, {
+      disableClose: false,
+      data: { name: this.presenter.name}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.onDeleteClick();
+      }
+      dialogRef = null;
+    });
+  };
+
+  // onNoClick(): void {
+  //   this.dialogRef.close();
+  // }
+
   onDeleteClick() {
-    if (confirm('Are you sure?')) {
-      this.presenterService.deletePresenter(this.presenter);
-      this.flashMessage.show('Presenter Removed', {
-        cssClass: 'alert-success', timeout: 4000
-      });
-      this.router.navigate(['/presenters']);
-    }
+    this.presenterService.deletePresenter(this.presenter);
+    this.flashMessage.show('Presenter Removed', {
+      cssClass: 'alert-success', timeout: 4000
+    });
+    this.router.navigate(['/presenters']);
+    // if (confirm('Are you sure?')) {
+    //   this.presenterService.deletePresenter(this.presenter);
+    //   this.flashMessage.show('Presenter Removed', {
+    //     cssClass: 'alert-success', timeout: 4000
+    //   });
+    //   this.router.navigate(['/presenters']);
+    // }
   }
 
   toggleHover(event: boolean) {
@@ -136,4 +169,22 @@ export class EditPresenterComponent implements OnInit {
   isActive(snapshot) {
     return snapshot.state === 'running' && snapshot.bytesTransferred < snapshot.totalBytes
   }
+  
+}
+
+@Component({
+  selector: 'app-dialog-confirm',
+  templateUrl: './dialog-confirm.component.html',
+  styleUrls: ['./dialog-confirm.component.css']
+})
+export class DialogConfirmComponent {
+
+  constructor(
+    public dialogRef: MatDialogRef<DialogConfirmComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
 }

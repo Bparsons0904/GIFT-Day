@@ -31,3 +31,36 @@
     margin: 0;
     padding: 0;
 }
+
+.mat-form-field-underline {
+    bottom: 0.6px!important;
+}
+
+.mat-form-field-wrapper {
+    padding-bottom: 5px;
+    padding-top: 10px;
+}
+.submit-button {
+    background-color: var(--main-blue);
+    max-width: 150px;
+    color: white!important;
+    font-size: 1.25em;
+    min-width: 100px;
+}
+.delete-button {
+    background-color: var(--accent-red);
+    max-width: 150px;
+    color: white!important;
+    font-size: 1.25em;
+    min-width: 100px;
+}
+.submit {
+    display: flex;
+    margin-top: 15px;
+}
+.card {
+    margin-bottom: 15px;
+}
+.confirm-cancel {
+    margin-left: 25px;
+}

@@ -37,9 +37,10 @@ import { AddworkshopComponent } from './components/addworkshop/addworkshop.compo
 import { EditworkshopComponent } from './components/editworkshop/editworkshop.component';
 import { PresentersComponent } from './components/presenters/presenters.component';
 import { AddPresenterComponent } from './components/add-presenter/add-presenter.component';
-import { EditPresenterComponent } from './components/edit-presenter/edit-presenter.component';
+import { EditPresenterComponent, DialogConfirmComponent } from './components/edit-presenter/edit-presenter.component';
 import { DetailsPresenterComponent } from './components/details-presenter/details-presenter.component';
 import { DetailsWorkshopComponent } from './components/details-workshop/details-workshop.component';
+// import { DialogConfirmComponent } from './components/dialog-confirm/dialog-confirm.component';
 
 // File Upload
 import { AngularFireStorageModule } from 'angularfire2/storage';
@@ -55,8 +56,10 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material';
 import { MatInputModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { MqIfDirective } from './directives/mq-if.directive';
+
 // import { ResponsiveModule } from 'ngx-responsive'
 
 @NgModule({
@@ -86,7 +89,8 @@ import { MqIfDirective } from './directives/mq-if.directive';
     DetailsPresenterComponent,
     DetailsWorkshopComponent,
     DropzoneDirective,
-    MqIfDirective
+    MqIfDirective,
+    DialogConfirmComponent
 
   ],
   imports: [
@@ -109,7 +113,11 @@ import { MqIfDirective } from './directives/mq-if.directive';
     MatExpansionModule,
     MatFormFieldModule,
     MatInputModule,
+    MatDialogModule,
     BrowserAnimationsModule
+  ],
+  entryComponents: [
+    EditPresenterComponent, DialogConfirmComponent ,
   ],
   providers: [ClientService, AuthService, SettingsService, NotifyService, UserService, WorkshopsService, PresenterService],
   bootstrap: [AppComponent]

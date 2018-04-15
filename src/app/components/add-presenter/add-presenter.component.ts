@@ -6,7 +6,10 @@ import { Presenter } from '../../models/presenter';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireStorage, AngularFireUploadTask } from 'angularfire2/storage';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { tap } from 'rxjs/operators';
+// import { tap } from 'rxjs/operators';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+
 
 @Component({
   selector: 'app-add-presenter',

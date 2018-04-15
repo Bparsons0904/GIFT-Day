@@ -29,8 +29,8 @@
 }
 
 .workshop-return a {
-    color: var(--accent-purple);
-    border-color: var(--accent-purple);
+    color: var(--main-orange);
+    border-color: var(--main-orange);
 }
 
 .presenter {
@@ -144,10 +144,6 @@
 
 .mat-expansion-panel-body {
     background-color: var(--main-grey)
-}
-
-.lower-accordian {
-    max-width: 400px;;
 }
 
 .button-row {

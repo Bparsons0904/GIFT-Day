@@ -113,8 +113,7 @@
                     {{ workshop.session2.totalSeats - workshop.session2.registered.length }}
                   </p>
                 </mat-chip>
-                <mat-chip [ngClass]="((workshop.session3.totalSeats - workshop.session3.registered.length) > 10) ? 'sessions col' : ((workshop.session3.totalSeats
-                                      - workshop.session3.registered.length) == 0) ? 'sessions col session-out' : 'sessions col session-low'"
+                <mat-chip [ngClass]="((workshop.session3.totalSeats - workshop.session3.registered.length) > 10) ? 'sessions col' : ((workshop.session3.totalSeats -  workshop.session3.registered.length) == 0) ? 'sessions col session-out' : 'sessions col session-low'"
                   routerLink="/workshops/{{ workshop.id }}">
                   <p class="text-center">
                     Session 3
