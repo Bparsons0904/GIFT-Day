@@ -13,7 +13,7 @@
 }
 
 .bio-header h1 {
-    color: #e8af48;
+    color: var(--main-orange);
 }
 .bio-header p {
     font-size: 20px;
@@ -24,6 +24,11 @@
     font-size: 20px;
     margin-top: 5px;
     margin-bottom: 5px;
+}
+
+.workshop-return a {
+    color: var(--main-orange);
+    border-color: var(--main-orange);
 }
 
 @media (min-width: 576px) { 

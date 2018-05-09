@@ -51,7 +51,7 @@
                     <span *ngIf="presenter1.currentEmployer"> at </span>{{ presenter1.currentEmployer }}
                   </h5>
                   <p>{{ (presenter1.bio.length > 200)? (presenter1.bio | slice:0:200) + '...':(presenter1.bio) }}</p>
-                  <a routerLink="/presenters/{{ presenter1.id }}">Learn More</a>
+                  <a routerLink="/presenters/{{ presenter1.id }}">Learn more about {{ presenter1.name }}</a>
                 </div>
               </div>
             </div>
@@ -81,7 +81,7 @@
                     <span *ngIf="presenter2.currentEmployer"> at </span>{{ presenter2.currentEmployer }}
                   </h5>
                   <p>{{ (presenter2.bio.length > 200)? (presenter2.bio | slice:0:200) + '...':(presenter2.bio) }}</p>
-                  <a routerLink="/presenters/{{ presenter2.id }}">Learn More</a>
+                  <a routerLink="/presenters/{{ presenter2.id }}">Learn more about {{ presenter2.name }}</a>
                 </div>
               </div>
             </div>
@@ -188,7 +188,7 @@
               <span *ngIf="presenter1.currentEmployer"> at </span>{{ presenter1.currentEmployer }}
             </h5>
             <p>{{ (presenter1.bio.length > 200)? (presenter1.bio | slice:0:200) + '...':(presenter1.bio) }}</p>
-            <a routerLink="/presenters/{{ presenter1.id }}">Learn More about {{ presenter1.name }}</a>
+            <a routerLink="/presenters/{{ presenter1.id }}">Learn more about {{ presenter1.name }}</a>
           </div>
         </div>
       </div>
@@ -218,7 +218,7 @@
               <span *ngIf="presenter2.currentEmployer"> at </span>{{ presenter2.currentEmployer }}
             </h5>
             <p>{{ (presenter2.bio.length > 200)? (presenter2.bio | slice:0:200) + '...':(presenter2.bio) }}</p>
-            <a routerLink="/presenters/{{ presenter2.id }}">Learn More about {{ presenter2.name }}</a>
+            <a routerLink="/presenters/{{ presenter2.id }}">Learn more about {{ presenter2.name }}</a>
           </div>
         </div>
       </div>

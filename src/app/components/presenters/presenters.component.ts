@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { PresenterService } from '../../services/presenter.service';
 import { Presenter } from '../../models/presenter';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
+import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
+import { MatChipsModule } from '@angular/material/chips';
 
 @Component({
   selector: 'app-presenters',
@@ -14,7 +20,12 @@ export class PresentersComponent implements OnInit {
 
   constructor(
     private presenterService: PresenterService,
-  ) { }
+    private icon: MatIconModule,
+    matIconRegistry: MatIconRegistry,
+    domSanitizer: DomSanitizer
+  ) { 
+    matIconRegistry.addSvgIconSet(domSanitizer.bypassSecurityTrustResourceUrl('./assets/icons/mdi.svg'));
+  }
 
   ngOnInit() {
     this.presenterService.getPresenters().subscribe(presenters => {

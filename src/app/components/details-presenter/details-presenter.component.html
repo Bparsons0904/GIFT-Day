@@ -1,39 +1,49 @@
-<div class="row">
-  <div class="col-md-6 bio-header">
-    <a routerLink="/presenters" class="btn btn-sm btn-outline-info">
-      <i class="fa fa-backward"></i>  All Presenters
-    </a>
-    <h1>{{ presenter.name }}</h1>
-    <p>{{ presenter.occupation }}</p>
-    <p>{{ presenter.currentEmployer }}</p>
-    <p *ngIf="presenter.education">{{ presenter.education }}</p>
-    <a *ngIf="presenter.email" href="mailto:{{ presenter.email }}?Subject=GIFT%20Day">{{ presenter.email }}</a>
-  </div>
-  <div class="col-md-6 bio-image">
-    <img class="img-fluid" src="{{ presenter.imageURL }}" alt="{{ presenter.name + 'image' }}">
-  </div>
-</div>
-<div class="row">
-  <div class="bio">
-    <p>{{ presenter.bio }}</p>
-  </div>
-</div>
-
-<!-- <div class="card-deck justify-content-center">
-  <div class="card">
-    <img class="img-fluid" src="{{ presenter.imageURL }}" alt="{{ presenter.name + 'image' }}">
-    <div class="card-body">
-      <h3 class="card-text">{{ presenter.name }}</h3>
-      <p class="card-text">{{ presenter.occupation }}</p>
-      <p class="card-text">
-        {{ (presenter.bio.length > 200)? (presenter.bio | slice:0:200) + '...':(presenter.bio) }}
-      </p>
-    </div>
-    <div class="card-footer">
-      <div class="row">
-        <p class="class-muted mr-auto details" routerLink="/presenters/{{ presenter.id }}">Presenter Details</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 bio-header">
+      <div class="workshop-return">
+        <a routerLink="/presenters" class="btn btn-sm btn-outline-info">
+          <i class="fa fa-backward"></i> All Presenters
+        </a>
       </div>
-      <a *ngIf="admin" routerLink="/presenters/edit/{{ presenter.id }}">Edit Presenters</a>
+  
+      <h1>{{ presenter.name }}</h1>
+      <p>{{ presenter.occupation }}<span *ngIf="presenter.currentEmployer"> at </span>{{ presenter.currentEmployer }}</p>
+      <p *ngIf="presenter.education">{{ presenter.education }}</p>
+      <a *ngIf="presenter.email" href="mailto:{{ presenter.email }}?Subject=GIFT%20Day">{{ presenter.email }}</a>
+    </div>
+    <div class="col-md-6 bio-image">
+      <img class="img-fluid" src="{{ presenter.imageURL }}" alt="{{ presenter.name + 'image' }}">
     </div>
   </div>
-</div> -->
+  <div class="row">
+    <div class="bio">
+      <p>{{ presenter.bio }}</p>
+    </div>
+  </div>
+
+  <div class="workshop-return">
+    <a routerLink="/presenters" class="btn btn-sm btn-outline-info">
+      <i class="fa fa-backward"></i> All Presenters
+    </a>
+  </div>
+  
+  <!-- <div class="card-deck justify-content-center">
+    <div class="card">
+      <img class="img-fluid" src="{{ presenter.imageURL }}" alt="{{ presenter.name + 'image' }}">
+      <div class="card-body">
+        <h3 class="card-text">{{ presenter.name }}</h3>
+        <p class="card-text">{{ presenter.occupation }}</p>
+        <p class="card-text">
+          {{ (presenter.bio.length > 200)? (presenter.bio | slice:0:200) + '...':(presenter.bio) }}
+        </p>
+      </div>
+      <div class="card-footer">
+        <div class="row">
+          <p class="class-muted mr-auto details" routerLink="/presenters/{{ presenter.id }}">Presenter Details</p>
+        </div>
+        <a *ngIf="admin" routerLink="/presenters/edit/{{ presenter.id }}">Edit Presenters</a>
+      </div>
+    </div>
+  </div> -->
+</div>
