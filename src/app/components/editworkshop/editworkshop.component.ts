@@ -10,6 +10,12 @@ import { Observable } from 'rxjs/Observable';
 
 import { AngularFirestore } from 'angularfire2/firestore';
 import { tap } from 'rxjs/operators';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { Inject } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+// import { DialogConfirmComponent } from '../edit-presenter';
 
 @Component({
   selector: 'app-editworkshop',
@@ -58,6 +64,7 @@ export class EditworkshopComponent implements OnInit {
     private flashMessage: FlashMessagesService,
     private presenterService: PresenterService,
     private storage: AngularFireStorage,
+    private dialog: MatDialog,
   ) { }
 
   ngOnInit() {
@@ -94,14 +101,26 @@ export class EditworkshopComponent implements OnInit {
     }
   }
 
+  openDialog(): void {
+    let dialogRef = this.dialog.open(ConfirmComponent, {
+      disableClose: false,
+      data: { name: this.workshop.name }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.onDeleteClick();
+      }
+      dialogRef = null;
+    });
+  };
+
   onDeleteClick() {
-    if (confirm('Are you sure?')) {
-      this.wss.deleteWorkshop(this.workshop);
+    this.wss.deleteWorkshop(this.workshop);
       this.flashMessage.show('Workshop Removed', {
         cssClass: 'alert-success', timeout: 4000
       });
       this.router.navigate(['/workshops']);
-    }
   }
 
   toggleHover(event: boolean) {
@@ -166,4 +185,21 @@ export class EditworkshopComponent implements OnInit {
   isActive(snapshot) {
     return snapshot.state === 'running' && snapshot.bytesTransferred < snapshot.totalBytes
   }
+}
+
+@Component({
+  selector: 'app-confirm',
+  templateUrl: './confirm.component.html',
+  styleUrls: ['./confirm.component.css']
+})
+export class ConfirmComponent {
+
+  constructor(
+    public dialogRef: MatDialogRef<ConfirmComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
 }

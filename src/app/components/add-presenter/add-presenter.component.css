@@ -14,7 +14,7 @@ progress::-webkit-progress-value {
 }
 
 .card {
-    max-width: 350px;
+    max-width: 400px;
     margin-right: 0px;
     margin-left: 0px;
 }
@@ -28,6 +28,3 @@ progress::-webkit-progress-value {
     font-size: 1.5em;
 }
 
-textarea.mat-input-element {
-    height: 100px;
-}

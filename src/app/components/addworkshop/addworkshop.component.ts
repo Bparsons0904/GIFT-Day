@@ -11,6 +11,10 @@ import { Observable } from 'rxjs/Observable';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { tap } from 'rxjs/operators';
 
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+
 @Component({
   selector: 'app-addworkshop',
   templateUrl: './addworkshop.component.html',

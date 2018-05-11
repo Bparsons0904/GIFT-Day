@@ -26,7 +26,7 @@
           </div> -->
         </mat-form-field>
         <mat-form-field>
-          <textarea matInput placeholder="Presenter Bio" type="text" class="form-control" [ngClass]="{'is-invalid':presenterBio.errors && presenterBio.touched}" [(ngModel)]="presenter.bio"
+          <textarea matInput matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="10" placeholder="Presenter Bio" type="text" class="form-control" [ngClass]="{'is-invalid':presenterBio.errors && presenterBio.touched}" [(ngModel)]="presenter.bio"
             name="bio" #presenterBio="ngModel" minlength="10" required></textarea>
           <!-- <div [hidden]="!presenterBio.errors?.required" class="invalid-feedback">
             Bio is required

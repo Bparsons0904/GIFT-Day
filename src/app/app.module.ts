@@ -34,7 +34,7 @@ import { UserFormComponent } from './components/user-form/user-form.component';
 import { HomeComponent } from './components/home/home.component';
 import { WorkshopsComponent } from './components/workshops/workshops.component';
 import { AddworkshopComponent } from './components/addworkshop/addworkshop.component';
-import { EditworkshopComponent } from './components/editworkshop/editworkshop.component';
+import { EditworkshopComponent, ConfirmComponent } from './components/editworkshop/editworkshop.component';
 import { PresentersComponent } from './components/presenters/presenters.component';
 import { AddPresenterComponent } from './components/add-presenter/add-presenter.component';
 import { EditPresenterComponent, DialogConfirmComponent } from './components/edit-presenter/edit-presenter.component';
@@ -57,6 +57,7 @@ import { MatFormFieldModule } from '@angular/material';
 import { MatInputModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
 
 import { MqIfDirective } from './directives/mq-if.directive';
 
@@ -90,7 +91,8 @@ import { MqIfDirective } from './directives/mq-if.directive';
     DetailsWorkshopComponent,
     DropzoneDirective,
     MqIfDirective,
-    DialogConfirmComponent
+    DialogConfirmComponent,
+    ConfirmComponent,
 
   ],
   imports: [
@@ -114,10 +116,11 @@ import { MqIfDirective } from './directives/mq-if.directive';
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
+    MatSelectModule,
     BrowserAnimationsModule
   ],
   entryComponents: [
-    EditPresenterComponent, DialogConfirmComponent ,
+    EditPresenterComponent, DialogConfirmComponent, ConfirmComponent,
   ],
   providers: [ClientService, AuthService, SettingsService, NotifyService, UserService, WorkshopsService, PresenterService],
   bootstrap: [AppComponent]

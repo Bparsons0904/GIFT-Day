@@ -1,15 +1,29 @@
-.delete {
-    /* margin-right: auto; */
-    margin-bottom: 15px;
-}
-.registered {
-    padding-left: 1em;
-    padding-right: 1em;
-}
 progress::-webkit-progress-value {
     transition: width 0.1s ease;
 }
 .progress {
     width: 100%;
 }
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
 
+.form-container > * {
+  width: 100%;
+}
+
+.card {
+    max-width: 400px;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.dropzone {
+    margin-top: 10px;
+}
+.card-header {
+    background-color: var(--main-orange);
+    color: white;
+    font-size: 1.5em;
+}
