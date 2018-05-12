@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/user';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 type UserFields = 'email' | 'password';
 type FormErrors = {[u in UserFields]: string };
@@ -70,7 +71,7 @@ export class LoginComponent implements OnInit {
   }
 
   signup() {
-    this.auth.emailSignUp(this.userForm.value['email'], this.userForm.value['password']);
+    this.auth.emailSignUp(this.userForm.value['email'], this.userForm.value['password']).then(() => this.afterSignIn());
   }
 
   login() {

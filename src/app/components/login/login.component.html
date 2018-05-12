@@ -1,101 +1,88 @@
-<div class="row">
-  <div class="col md-6 mx-auto">
-    <div class="card">
-      <div class="card-body">
-        <h1 class="text-center pb-4 pt-3">
-          <span class="text-primary"><i class="fa fa-lock"></i> Client Panel</span>
-           Login
-        </h1>
-        <div class="login-form" *ngIf="!newUser">
-          <form [formGroup]="userForm"(ngSubmit)="login()">
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" id="email" class="form-control" formControlName="email" required>
+<div class="container=fluid">
+  <div class="card mx-auto" *ngIf="newUser">
+    <div class="card-header">
+      <i class="fa fa-lock"></i> User Registration
+    </div>
+    <div class="card-body">
+      <form [formGroup]="userForm" (ngSubmit)="signup()">
+        <div class="form-container">
+          <mat-form-field>
+            <input matInput placeholder="Email" type="email" id="email" class="form-control" formControlName="email" required>
+            <mat-error *ngIf="formErrors.email">
+               {{ formErrors.email }}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Password" type="password" id="password" class="form-control" formControlName="password" required>
+            <mat-error *ngIf="formErrors.password">
+              {{ formErrors.password }}
+            </mat-error>
+          </mat-form-field>
+          <div class="submit">
+            <div class="ml-auto">
+              <button type="submit" value="Submit" mat-raised-button class="submit-button text-center" [disabled]="!userForm.valid">Submit</button>
             </div>
-            <div *ngIf="formErrors.email" class="alert alert-danger">
-              {{ formErrors.email }}
-            </div>
-            <div class="form-group">
-              <label for="password">Password</label>
-              <input type="password" id="password" class="form-control" formControlName="password" required>
-              <div *ngIf="formErrors.password" class="alert alert-danger">
-                {{ formErrors.password }}
-              </div>
-            </div>
-            <input type="submit" value="Login" class="btn btn-primary btn-block" [disabled]="!userForm.valid">
-          </form>
-          <button *ngIf="!passReset && userForm.controls.email.valid" class="btn btn-link btn-block" (click)="resetPassword()">Reset Password for {{userForm.value.email}}?</button>
-          <p *ngIf="passReset" class="help is-info">Reset requested. Check your email instructions.</p>
-          <button class="btn btn-link btn-block" (click)="toggleForm()">Register</button>
+          </div>
+          
         </div>
-
-        <div class="register-form" *ngIf="newUser">
-          <form [formGroup]="userForm" (ngSubmit)="signup()">
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" id="email" class="form-control" formControlName="email" required>
-            </div>
-            <div *ngIf="formErrors.email" class="alert alert-danger">
-              {{ formErrors.email }}
-            </div>
-            <div class="form-group">
-              <label for="password">Password</label>
-              <input type="password" id="password" class="form-control" formControlName="password" required>
-              <div *ngIf="formErrors.password" class="alert alert-danger">
-                {{ formErrors.password }}
-              </div>
-            </div>
-            <input type="submit" value="Register" class="btn btn-primary btn-block" [disabled]="!userForm.valid">
-          </form>
-          <button class="btn btn-link btn-block" (click)="toggleForm()">Already Registered?</button>
-        </div>
+      </form>
+      <button class="btn btn-link btn-block" (click)="toggleForm()">Already Registered?</button>
+    </div>
+    <div class="card-footer">
+      <div class="card-body text-center">
+        <button (click)="signInWithGoogle()" class="btn btn-block btn-google">
+          <i class="fa fa-google"></i> Connect Google
+        </button>
+        <button (click)="signInWithFacebook()" class="btn btn-block btn-facebook">
+          <i class="fa fa-facebook"></i> Connect Facebook
+        </button>
       </div>
     </div>
-    <div class="card mt-4">
-      <!-- <div class="card-header">
-        Social Login
-      </div>   -->
-        <div class="card-body text-center">
-          <button (click)="signInWithGoogle()" class="btn btn-block btn-primary">
-            <i class="fa fa-google"></i> Connect Google
-          </button>
-          <button (click)="authService.facebookLogin()" class="btn btn-block btn-primary">
-            <i class="fa fa-facebook"></i> Connect Facebook
-          </button>
-        </div>
-      
-      
+  </div ><!-- End Card -->
+
+  <div class="card mx-auto" *ngIf="!newUser">
+    <div class="card-header">
+      <i class="fa fa-lock"></i> User Login
     </div>
-  </div>
-</div>
+    <div class="card-body">
+      <form [formGroup]="userForm" (ngSubmit)="login()">
+        <div class="form-container">
+          <mat-form-field>
+            <input matInput placeholder="Email" type="email" id="email" class="form-control" formControlName="email" required>
+            <mat-error *ngIf="formErrors.email">
+               {{ formErrors.email }}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Password" type="password" id="password" class="form-control" formControlName="password" required>
+            <mat-error *ngIf="formErrors.password">
+              {{ formErrors.password }}
+            </mat-error>
+          </mat-form-field>
+          <div class="submit">
+            <div class="ml-auto">
+              <button type="submit" value="Submit" mat-raised-button class="submit-button text-center" [disabled]="!userForm.valid">Submit</button>
+            </div>
+          </div>
+          
+        </div>
+      </form>
+      <button class="btn btn-link btn-block" (click)="toggleForm()">Register</button>
+    </div>
+    <div class="card-footer">
+      <div class="text-center">
+        <h4>Social Login</h4>
+      </div>
+      <button (click)="signInWithGoogle()" class="btn btn-block btn-google">
+        <i class="fa fa-google"></i> Connect Google
+      </button>
+      <button (click)="signInWithFacebook()" class="btn btn-block btn-facebook">
+        <i class="fa fa-facebook"></i> Connect Facebook
+      </button>
+      <button (click)="signInWithTwitter()" class="btn btn-block btn-twitter">
+        <i class="fa fa-facebook"></i> Connect Twitter
+      </button>
+    </div>
+  </div ><!-- End Card -->
 
-<!-- <div *ngIf="!(auth.user | async); else alreadyLoggedIn">
-
-  <h3>Social Login</h3>
-
-  <button (click)="signInWithGoogle()" class="button btn-social btn-google">
-    <i class="fa fa-google fa-lg"></i> Connect Google
-  </button>
-
-  <button (click)="signInWithFacebook()" class="button  btn-social btn-facebook">
-    <i class="fa fa-facebook fa-lg"></i> Connect Facebook
-  </button> -->
-
-  <!-- <button (click)="signInWithTwitter()" class="button  btn-social btn-twitter" disabled>
-    <i class="fa fa-twitter fa-lg"></i> Connect Twitter
-  </button> -->
-
-  <!-- <hr> -->
-
-  <!-- <user-form></user-form> -->
-
-<!-- </div> -->
-<div>
-  <button (click)="afterSignIn()">Authid test</button>
-</div>
-
-<!-- <ng-template #alreadyLoggedIn>
-  <p class="text-success">
-    Already logged in!
-  </p>
-</ng-template> -->
+</div> 

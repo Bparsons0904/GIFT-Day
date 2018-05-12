@@ -14,9 +14,12 @@
 <!-- User logged in -->
 <ng-template #authenticated>
   <div *ngIf="auth.user | async as user">
-    <div *ngIf="!completeProfile" class="card">
-      <div NgIf="user.displayName" class="card-header">
+    <div *ngIf="!completeProfile" class="card mx-auto">
+      <div *ngIf="user.displayName" class="card-header">
         {{user.displayName | titlecase }}'s Profile
+      </div>
+      <div *ngIf="!user.displayName">
+        Complete Profile
       </div>
       <div class="card-body">
         <form #profileForm="ngForm" (ngSubmit)="onSubmit(profileForm)">
@@ -52,7 +55,7 @@
       </div>
     </div>
     <div *ngIf="completeProfile">
-      <div class="card">
+      <div class="card mx-auto">
         <div class="card-header">
           {{ user.displayName }}'s Profile
         </div>
@@ -81,7 +84,7 @@
         <p>{{ workshop }}</p>
       </div>
     </div> -->
-    <div class="card">
+    <div class="card mx-auto">
       <div class="card-header">
         <p class="text-center">Registration Status</p>
       </div>
