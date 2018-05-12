@@ -18,7 +18,6 @@ export class UserService {
     constructor(private afs: AngularFirestore) {
         this.usersCollection = this.afs.collection('users',
             ref => ref.orderBy('lastName', 'asc'));
-
     }
 
     // getClients(): Observable<Client[]> {

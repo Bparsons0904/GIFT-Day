@@ -58,7 +58,7 @@ import { MatInputModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MqIfDirective } from './directives/mq-if.directive';
 
 // import { ResponsiveModule } from 'ngx-responsive'
@@ -117,7 +117,7 @@ import { MqIfDirective } from './directives/mq-if.directive';
     MatInputModule,
     MatDialogModule,
     MatSelectModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   entryComponents: [
     EditPresenterComponent, DialogConfirmComponent, ConfirmComponent,

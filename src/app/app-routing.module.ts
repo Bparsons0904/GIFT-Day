@@ -17,6 +17,7 @@ import { SettingsComponent } from
 import { NotFoundComponent } from
 './components/not-found/not-found.component';
 import { AuthGuard } from './guards/auth.guard';
+import { AdminGuard } from './guards/admin.guard';
 import { RegisterGuard } from './guards/register.guard';
 import { HomeComponent } from './components/home/home.component';
 // User Profile Addins
@@ -49,14 +50,14 @@ const routes: Routes = [
   { path: 'client/:id', component: ClientDetailsComponent, canActivate: [AuthGuard]},
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard]},
   // User Profile Addins
-  { path: 'profile', component: UserProfileComponent},
+  { path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard]},
   { path: 'workshops', component: WorkshopsComponent},
-  { path: 'workshops/add', component: AddworkshopComponent},
-  { path: 'workshops/edit/:id', component: EditworkshopComponent},
+  { path: 'workshops/add', component: AddworkshopComponent, canActivate: [AdminGuard]},
+  { path: 'workshops/edit/:id', component: EditworkshopComponent, canActivate: [AdminGuard]},
   { path: 'workshops/:id', component: DetailsWorkshopComponent},
   { path: 'presenters', component: PresentersComponent},
-  { path: 'presenters/add', component: AddPresenterComponent},
-  { path: 'presenters/edit/:id', component: EditPresenterComponent},
+  { path: 'presenters/add', component: AddPresenterComponent, canActivate: [AdminGuard]},
+  { path: 'presenters/edit/:id', component: EditPresenterComponent, canActivate: [AdminGuard]},
   { path: 'presenters/:id', component: DetailsPresenterComponent },
   {path: '**', component: NotFoundComponent},
 ]
@@ -65,6 +66,6 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes)
   ],
-  providers: [AuthGuard, RegisterGuard]
+  providers: [AuthGuard, RegisterGuard, AdminGuard]
 })
 export class AppRoutingModule { }

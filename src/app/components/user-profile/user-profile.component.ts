@@ -53,7 +53,7 @@ export class UserProfileComponent implements OnInit {
   ];
   
   constructor(
-    public auth: AuthService,
+    private auth: AuthService,
     private flashMessage: FlashMessagesService,
     // private afs: AngularFirestore,
     private userService: UserService,
@@ -71,26 +71,29 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit() {
     this.auth.user.subscribe(user => {
-      this.uid = user.uid;
-      this.userService.getUser(this.uid).subscribe(user => {
-        this.user = user;
-        if(user.email && user.displayName && user.grade) {
-          this.completeProfile = true;
-        }
-        if(user.workshops.length != 3) {
-          this.user.workshops = [null, null, null];
-          this.userService.updateUsers(this.user);
-        }
-        for (let i = 0; i < 3; i++) {
-          if(user.workshops[i] != null) {
-            this.wss.getWorkshop(user.workshops[i]).subscribe(workshop => {
-              this["workshop" + String(i+1)] = workshop;
-            });
-          } else {
-            this["workshop" + String(i + 1)] = undefined;
+      if(user != null) {
+        this.uid = user.uid;
+        this.userService.getUser(this.uid).subscribe(user => {
+          this.user = user;
+          if (user.email && user.displayName && user.grade) {
+            this.completeProfile = true;
           }
-        };
-      });
+          if (user.workshops.length != 3) {
+            this.user.workshops = [null, null, null];
+            this.userService.updateUsers(this.user);
+          }
+          for (let i = 0; i < 3; i++) {
+            if (user.workshops[i] != null) {
+              this.wss.getWorkshop(user.workshops[i]).subscribe(workshop => {
+                this["workshop" + String(i + 1)] = workshop;
+              });
+            } else {
+              this["workshop" + String(i + 1)] = undefined;
+            }
+          };
+        });
+      }
+      
     });
   //   this.wss.getWorkshops().subscribe(workshops => {
   //     this.workshops = workshops;

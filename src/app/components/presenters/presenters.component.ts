@@ -7,6 +7,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { MatChipsModule } from '@angular/material/chips';
+import { AuthService } from '../../services/auth.service';
+import 'rxjs/add/operator/take'
 
 @Component({
   selector: 'app-presenters',
@@ -21,8 +23,9 @@ export class PresentersComponent implements OnInit {
   constructor(
     private presenterService: PresenterService,
     private icon: MatIconModule,
-    matIconRegistry: MatIconRegistry,
-    domSanitizer: DomSanitizer
+    private matIconRegistry: MatIconRegistry,
+    private domSanitizer: DomSanitizer,
+    private auth: AuthService,
   ) { 
     matIconRegistry.addSvgIconSet(domSanitizer.bypassSecurityTrustResourceUrl('./assets/icons/mdi.svg'));
   }
@@ -32,9 +35,11 @@ export class PresentersComponent implements OnInit {
       this.presenters = presenters;
     });
 
-    // Remove for production
-    // this.admin = this.userservice.admin;
-    this.admin = true;
+    this.auth.user.take(1).subscribe(user => {
+      if (user != null) {
+        this.admin = user.admin;
+      }
+    });    
   }
 
 }

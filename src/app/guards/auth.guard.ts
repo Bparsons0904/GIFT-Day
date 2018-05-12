@@ -32,19 +32,19 @@ export class AuthGuard implements CanActivate {
     }
 
     // User Profile Addins
-    canActivateNew(
-        next: ActivatedRouteSnapshot,
-        state: RouterStateSnapshot): Observable<boolean> | boolean {
+    // canActivateNew(
+    //     next: ActivatedRouteSnapshot,
+    //     state: RouterStateSnapshot): Observable<boolean> | boolean {
 
-        return this.auth.user
-            .take(1)
-            .map(user => !!user)
-            .do(loggedIn => {
-                if (!loggedIn) {
-                    console.log('access denied')
-                    this.router.navigate(['/login']);
-                }
-            })
+    //     return this.auth.user
+    //         .take(1)
+    //         .map(user => !!user)
+    //         .do(loggedIn => {
+    //             if (!loggedIn) {
+    //                 console.log('access denied')
+    //                 this.router.navigate(['/login']);
+    //             }
+    //         })
 
-    }
+    // }
 }
