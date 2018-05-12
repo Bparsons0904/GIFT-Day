@@ -1,0 +1,55 @@
+progress::-webkit-progress-value {
+    transition: width 0.1s ease;
+}
+.progress {
+    width: 100%;
+}
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container > * {
+  width: 100%;
+}
+
+.card {
+    max-width: 400px;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.dropzone {
+    margin-top: 10px;
+}
+.card-header {
+    background-color: var(--main-orange);
+    color: white;
+    font-size: 1.5em;
+}
+
+.card-header p {
+    margin-bottom: 0px;
+}
+
+.registration-btn {
+    background-color: var(--main-blue);
+    color: white;
+    margin: 5px;
+    padding: 5px;
+    height: 45px;
+    width: 150px;
+}
+
+.middle-section {
+    background-color: var(--main-grey);
+}
+
+.edit-profile button {
+    background-color: var(--accent-purple);
+}
+
+.edit-profile span {
+    padding-left: 10px;
+    color: var(--accent-purple);
+}

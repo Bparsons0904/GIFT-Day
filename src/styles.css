@@ -54,6 +54,13 @@
     font-size: 1.25em;
     min-width: 100px;
 }
+.cancel-button {
+    background-color: white;
+    max-width: 150px;
+    color: black;
+    font-size: 1.25em;
+    min-width: 100px;
+}
 .submit {
     display: flex;
     margin-top: 15px;

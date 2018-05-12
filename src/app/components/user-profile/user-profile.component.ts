@@ -14,7 +14,13 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 // import { AngularFireAuth } from "angularfire2/auth";
 // import { Client } from '../../models/Client';
 import { WorkshopsService } from '../../services/workshops.service';
-import { Workshop } from '../../models/Workshops';;
+import { Workshop } from '../../models/Workshops';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { DomSanitizer } from '@angular/platform-browser';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-user-profile',
@@ -31,12 +37,20 @@ export class UserProfileComponent implements OnInit {
   registeredWorkshop: any[];
   test: Observable<User>;
   uid: string;
+  completeProfile: boolean = false;
 
   workshop1: Workshop;
   workshop2: Workshop;
   workshop3: Workshop;
 
   workshop: Workshop;
+
+  grades = [
+    { value: 'Freshman', viewValue: 'Freshman' },
+    { value: 'Sophmore', viewValue: 'Sophomore' },
+    { value: 'Junior', viewValue: 'Junior' },
+    { value: 'Senior', viewValue: 'Senior' }
+  ];
   
   constructor(
     public auth: AuthService,
@@ -46,15 +60,27 @@ export class UserProfileComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private wss: WorkshopsService,
+
+    private matIconRegistry: MatIconRegistry,
+    private domSanitizer: DomSanitizer
     // private clientService: ClientService,
     // private afAuth: AngularFireAuth,
-  ) { }
+  ) { 
+    matIconRegistry.addSvgIconSet(domSanitizer.bypassSecurityTrustResourceUrl('./assets/icons/mdi.svg'));
+  }
 
   ngOnInit() {
     this.auth.user.subscribe(user => {
       this.uid = user.uid;
       this.userService.getUser(this.uid).subscribe(user => {
         this.user = user;
+        if(user.email && user.displayName && user.grade) {
+          this.completeProfile = true;
+        }
+        if(user.workshops.length != 3) {
+          this.user.workshops = [null, null, null];
+          this.userService.updateUsers(this.user);
+        }
         for (let i = 0; i < 3; i++) {
           if(user.workshops[i] != null) {
             this.wss.getWorkshop(user.workshops[i]).subscribe(workshop => {
@@ -88,12 +114,15 @@ export class UserProfileComponent implements OnInit {
       if(value.workshops == null) {
         value.workshops = [];
       }
-      
+      value.uid = this.user.uid;
       this.userService.updateUsers(value);
       this.flashMessage.show('User Profile Updated.', {
         cssClass: 'alert-success', timeout: 4000
       });
-      this.router.navigate(['/'])
+      if (this.user.email && this.user.displayName && this.user.grade) {
+        this.completeProfile = true;
+      }
+      // this.router.navigate(['/'])
     }
   }
 
@@ -105,6 +134,10 @@ export class UserProfileComponent implements OnInit {
     this.userService.removeUserRegistration(this.user);
     this['workshop' + registeredSession] = undefined;
     // console.log(this.workshop['session' + this.registeredSession].registered, this.user.workshops, this.registered);
+  }
+
+  editProfile() {
+    this.completeProfile = !this.completeProfile;
   }
 
   idcheck() {
