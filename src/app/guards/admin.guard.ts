@@ -8,6 +8,7 @@ import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { AuthService } from '../services/auth.service'
 import 'rxjs/add/operator/take';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { UserService } from '../services/user.service';
 
 @Injectable()
 export class AdminGuard implements CanActivate {
@@ -19,13 +20,15 @@ export class AdminGuard implements CanActivate {
         private afAuth: AngularFireAuth,
         private flashMessage: FlashMessagesService,
         // User Profile Addins
-        private auth: AuthService
+        private auth: AuthService,
+        private userService: UserService,
     ) { }
 
     canActivate() {
-        this.auth.user.take(1).subscribe(user => {
-            this.admin = user.admin;
-        });
+        // this.auth.user.take(1).subscribe(user => {
+        //     this.admin = user.admin;
+        // });
+        this.admin = this.userService.getAdmin();
         if(this.admin){
             return true;
         } else {

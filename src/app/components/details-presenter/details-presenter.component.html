@@ -21,29 +21,64 @@
       <p>{{ presenter.bio }}</p>
     </div>
   </div>
+</div>
 
-  <div class="workshop-return">
-    <a routerLink="/presenters" class="btn btn-sm btn-outline-info">
-      <i class="fa fa-backward"></i> All Presenters
-    </a>
-  </div>
-  
-  <!-- <div class="card-deck justify-content-center">
-    <div class="card">
-      <img class="img-fluid" src="{{ presenter.imageURL }}" alt="{{ presenter.name + 'image' }}">
-      <div class="card-body">
-        <h3 class="card-text">{{ presenter.name }}</h3>
-        <p class="card-text">{{ presenter.occupation }}</p>
-        <p class="card-text">
-          {{ (presenter.bio.length > 200)? (presenter.bio | slice:0:200) + '...':(presenter.bio) }}
-        </p>
+<div *ngFor="let workshop of workshops">
+  <div class="card mx-auto" *ngIf="workshop.presenter1 == presenter.id || workshop.presenter2 == presenter.id">
+    <img class="img-fluid" src="{{ workshop.imageURL }}" alt="{{ workshop.name + 'image' }}" routerLink="/workshops/{{ workshop.id }}">
+    <div class="card-header">
+       {{ workshop.name }}
+    </div>
+    <div class="card-body">
+       {{ (workshop.description.length > 200)? (workshop.description | slice:0:200) + '...':(workshop.description) }}
+    </div>
+    <div class="card-footer" routerLink="/workshops/{{ workshop.id }}">
+      <div>
+        <p class="availability text-center">Workshop Availability</p>
       </div>
-      <div class="card-footer">
-        <div class="row">
-          <p class="class-muted mr-auto details" routerLink="/presenters/{{ presenter.id }}">Presenter Details</p>
-        </div>
-        <a *ngIf="admin" routerLink="/presenters/edit/{{ presenter.id }}">Edit Presenters</a>
+      <div>
+        <mat-chip-list>
+          <div class="row">
+            <mat-chip [ngClass]="((workshop.session1.totalSeats - workshop.session1.registered.length) > 10) ? 'sessions col' : ((workshop.session1.totalSeats - workshop.session1.registered.length) == 0) ? 'sessions col session-out' : 'sessions col session-low'"
+              routerLink="/workshops/{{ workshop.id }}">
+              <p class="text-center">
+                Session 1
+              </p>
+              <p class="text-center">
+                {{ workshop.session1.totalSeats - workshop.session1.registered.length }}
+              </p>
+            </mat-chip>
+            <mat-chip [ngClass]="((workshop.session2.totalSeats - workshop.session2.registered.length) > 10) ? 'sessions col' : ((workshop.session2.totalSeats
+                    - workshop.session2.registered.length) == 0) ? 'sessions col session-out' : 'sessions col session-low'"
+              routerLink="/workshops/{{ workshop.id }}">
+              <p class="text-center">
+                Session 2
+              </p>
+              <p class="text-center">
+                {{ workshop.session2.totalSeats - workshop.session2.registered.length }}
+              </p>
+            </mat-chip>
+            <mat-chip [ngClass]="((workshop.session3.totalSeats - workshop.session3.registered.length) > 10) ? 'sessions col' : ((workshop.session3.totalSeats
+                    - workshop.session3.registered.length) == 0) ? 'sessions col session-out' : 'sessions col session-low'"
+              routerLink="/workshops/{{ workshop.id }}">
+              <p class="text-center">
+                Session 3
+              </p>
+              <p class="text-center">
+                {{ workshop.session3.totalSeats - workshop.session3.registered.length }}
+              </p>
+            </mat-chip>
+          </div>
+    
+    
+        </mat-chip-list>
       </div>
     </div>
-  </div> -->
+  </div>
+</div>
+
+<div class="workshop-return">
+  <a routerLink="/presenters" class="btn btn-sm btn-outline-info">
+    <i class="fa fa-backward"></i> All Presenters
+  </a>
 </div>

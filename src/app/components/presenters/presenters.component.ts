@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatChipsModule } from '@angular/material/chips';
 import { AuthService } from '../../services/auth.service';
 import 'rxjs/add/operator/take'
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-presenters',
@@ -26,6 +27,7 @@ export class PresentersComponent implements OnInit {
     private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer,
     private auth: AuthService,
+    private userService: UserService,
   ) { 
     matIconRegistry.addSvgIconSet(domSanitizer.bypassSecurityTrustResourceUrl('./assets/icons/mdi.svg'));
   }
@@ -38,6 +40,9 @@ export class PresentersComponent implements OnInit {
     this.auth.user.take(1).subscribe(user => {
       if (user != null) {
         this.admin = user.admin;
+        if(this.admin) {
+          this.userService.setAdmin();
+        }
       }
     });    
   }

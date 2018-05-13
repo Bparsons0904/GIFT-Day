@@ -67,6 +67,14 @@ export class UserService {
         this.userDoc.update(user);        
     }
 
+    setAdmin() {
+        this.admin = true;
+    }
+
+    getAdmin() {
+        return this.admin;
+    }
+
     // validUser(users: Users) {
     //     this.usersDoc = this.afs.doc(`users/${users.uid}`);
     //     console.log(this.usersDoc);

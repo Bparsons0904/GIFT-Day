@@ -167,7 +167,6 @@ export class DetailsWorkshopComponent implements OnInit {
     this["registered" + (sessionNumber + 1)] = true;
     this.user.workshops.splice((Number(sessionNumber)-1), 1, this.id);
     // this.user.workshops.push([this.id, (Number(sessionNumber))]);
-    
     this.userService.addUserRegistration(this.user);
   }
 
